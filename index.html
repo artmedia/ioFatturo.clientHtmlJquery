@@ -1,0 +1,770 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Luca Bongioanni">
+    <meta name="description" content="gestionale per Fatturazione Elettronica">
+    <title>programma gestionale di fatturazione elettronica</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- ###### versione 5 fontawesome ###### -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <!-- ###### datepicker gijgo http://gijgo.com/datepicker/example/bootstrap-4 ##### -->
+    <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.8.0/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <style>
+        main {
+            margin-top: 56px;
+            margin-bottom: 100px;
+        }
+
+        .spacerh10 {
+            height: 10px;
+        }
+
+        .spacerh20 {
+            height: 20px;
+        }
+
+        .spacerh30 {
+            height: 30px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+
+        .pointerOnMe,
+        button.dropdown-item {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+    <nav id="myHeader" class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg navbar-dark fixed-top bg-dark">
+    </nav>
+
+    <main role="main" id="mainContent">
+    </main>
+
+    <footer id="myFooter"></footer>
+
+    <!-- AJAX WAIT -->
+    <div id="FullPageOverlay" style="position:fixed !important; position:absolute; top:0; right:0; bottom:0; left:0;
+                                background: rgba(204,204,204,0.4); z-index: 10000;">
+        <div style="width:100%;height:100%;position:relative;">
+            <div style="position: absolute;
+                        top: 50%;left: 50%;width: 160px;line-height: 60px;height: 60px;
+                        margin-left: -80px;margin-top: -30px;
+                        background-color: #666;text-align: center;border-radius: 3px;
+                        background-image:url('images/wait_please.gif');
+                        background-position:5% center; background-repeat:no-repeat;"
+                 id="FullPageOverlayInner">
+                <span style="color:white;font-size:16px;" id="msgAjaxLoading2">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Message -->
+    <div class="modal fade" id="myModalMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Messaggio</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div id="myMessage"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal login -->
+    <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Autenticazione</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- ######## inizio form login ######## -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <span class="anchor" id="formLogin"></span>
+                                <!-- form card login -->
+                                <div class="card rounded-0">
+                                    <div class="card-header">
+                                        <h3 class="mb-0">Login</h3>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label for="myusername">Username</label>
+                                            <input type="text" class="form-control form-control-lg rounded-0" name="myusername" id="myusername" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mypassword">Password</label>
+                                            <input type="password" class="form-control form-control-lg rounded-0" id="mypassword" value="">
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="chkRememberMe">
+                                            <label class="form-check-label" for="exampleCheck1">Ricordami su questo computer</label>
+                                        </div>
+                                        <div id="boxloginMessage">
+                                        </div>
+                                        <div>
+                                            <div style="min-height:50px;">
+                                                <button type="button" class="btn btn-success btn-lg float-right" id="btnDoLogin">Login</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--/card-block-->
+                                </div>
+                                <!-- /form card login -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--/container-->
+                    <!-- ######## fine form login ######## -->
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Info Utente -->
+    <div class="modal fade" id="myModalInfoUtente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Info Utente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- ######## inizio form login ######## -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                username: <span id="InfoUtente_Username"></span>
+                                <br />
+                                il Login è valido fino a: <span id="InfoUtente_dataoraScadenzaToken"></span>
+                                <br />
+                                stai usando il client versione <span id="InfoUtente_versioneProgrammaClient"></span>.<span id="InfoUtente_sottoVersioneProgrammaClient"></span>
+                                <br />
+                                il server è versione <span id="InfoUtente_versioneProgrammaServer"></span>.<span id="InfoUtente_sottoVersioneProgrammaServer"></span>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div id="InfoUtente_message"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ######## fine form login ######## -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>-->
+    <script src="assets/bootstrap411.min.js"></script>
+
+    <!-- ###### datepicker gijgo http://gijgo.com/datepicker/example/bootstrap-4 ####### -->
+    <script src="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.8.0/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="assets/moment-with-locales.js"></script>
+    <!--  ###### https://github.com/blueimp/JavaScript-Templates ##### --->
+    <script src="assets/tmpl.min.js"></script>
+    <script src="js/_globalsPre.js"></script>
+    <script src="js/Soggetto.js"></script>
+    <script src="js/Articolo.js"></script>
+    <script src="js/FatturaCli.js"></script>
+    <script src="js/FatturaCliRiga.js"></script>
+
+    <script type="text/javascript">
+
+        var versioneProgrammaClient = 0;
+        var sottoVersioneProgrammaClient = 32;
+
+        var EmptyUid = "00000000-0000-0000-0000-000000000000";
+
+        moment().format();
+
+        var myStorage = {
+            "SiteConfig": {},
+            "ApiUrl": "",
+            "token": "",
+            "dataorascadenzatoken": "",
+            "username": "",
+            "sottoversioneprogramma": "",
+            "versioneprogramma": "",
+            "sezionalecollection": [],
+            "udmcollection": [],
+            "aliquotaivacollection": [],
+            "tipopagamentocollection": [],
+            "condizionipagamentocollection": [],
+            "coordinatebancariecollection": [],
+            "tipofatturaclientecollection": [],
+            "soggettocollection": [],
+            "articolocollection": [],
+            "tipoesigibilitaivacollection": [],
+            "azienda": {}
+        };
+        
+        $(document).ready(function () {
+
+            // ******************************
+            // Load Header + Menu async
+            // ******************************
+            $("#myHeader").load("include/_header.html", function () {
+
+                // Highlight Current Menu Item
+                var url = document.URL;
+                $('#menu a[href="' + url + '"]').addClass('active');
+
+
+                // ******************************
+                // Load Header + Menu async
+                // ******************************
+                $("#myFooter").load("include/_footer.html", function () {
+
+                    // ******************************
+                    // Legge il Config (se c'e')
+                    // ******************************
+                    $.getJSON("SiteConfig.json", function (json) {
+                    }).done(function (configData) {
+
+                        localStorage.setItem("SiteConfig", JSON.stringify(configData));
+                        myStorage.SiteConfig = configData;
+                        myStorage.ApiUrl = $.parseJSON(localStorage.SiteConfig).APIurl;
+                        popolaHeaderFooter(localStorage.SiteConfig);
+
+                        AjaxMessageStop();
+
+                        var successlogin = isUserLoggedIn(); //SERVE PER ATTIVARE LE OPERAZIONI INTERNE ALLA FNC
+
+                        loadPageContentByUrl();
+                       
+
+                    }).fail(function (jqxhr, textStatus, error) {
+                        
+                        // ********************************************
+                        // NON C'E' SiteConfig.json --> valori default
+                        // ********************************************
+                        $.getJSON("include/DefaultConfig.json", function (json) {
+                        }).done(function (configData) {
+
+                            localStorage.setItem("SiteConfig", JSON.stringify(configData));
+                            myStorage.SiteConfig = configData;
+                            myStorage.ApiUrl = $.parseJSON(localStorage.SiteConfig).APIurl;
+                            popolaHeaderFooter(localStorage.SiteConfig);
+
+                            AjaxMessageStop();
+
+                            var successlogin = isUserLoggedIn(); //SERVE PER ATTIVARE LE OPERAZIONI INTERNE ALLA FNC
+
+                            loadPageContentByUrl();
+                        });
+                        
+                    });
+
+                });
+
+            });
+
+        });
+
+        function loadPageContentByUrl() {
+
+            var myPage = 'home';
+            if (getUrlParams("page") != null) {
+                myPage = getUrlParams("page").toLowerCase();
+            };
+
+            switch (myPage) {
+                case 'home':
+                    $("#mainContent").load("include/home.html", function () {
+                    });
+                    break;
+                case 'fatturaclientearchivio':
+                    $("#mainContent").load("include/FatturaClienteArchivio.html", function () {
+                    });
+                    break;
+                case 'fatturaclientecrea':
+                    $("#mainContent").load("include/FatturaClienteCrea.html", function () {
+                    });
+                    break;
+                case 'assistenzatecnica':
+                    $("#mainContent").load("include/AssistenzaTecnica.html", function () {
+                    });
+                    break;
+                case 'assistenzacommerciale':
+                    $("#mainContent").load("include/AssistenzaCommerciale.html", function () {
+                    });
+                    break;
+                case 'contatti':
+                    $("#mainContent").load("include/contatti.html", function () {
+                    });
+                    break;
+                case 'privacy':
+                    $("#mainContent").load("include/privacy.html", function () {
+                    });
+                    break;
+                default:
+            }
+        };
+
+        // ***********
+        // LOGIN
+        // ***********
+        $('body').on('click', '#btnOpenModalLogin', function (event) {
+            $('#myModalLogin').modal('show');
+        });
+        $(document).on('click', '#btnDoLogin', function () {
+
+            AjaxMessageStart();
+            var _usr = $("#myusername").val();
+            var _pwd = $("#mypassword").val();
+            $("#boxloginMessage").empty();
+
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/autenticazione/login/Username/' + _usr + '/Password/' + _pwd,
+                contentType: "application/json"
+            }).done(function (data, statusText, xhdr) {
+                var myResponse = $.parseJSON(data);
+                var _success = myResponse.success; // = true;
+                var _errormessage = myResponse.errormessage; // = "OK";
+                var _errorcode = myResponse.errorcode; // = 0;
+                var _uidoperazione = myResponse.uidoperazione; // Guid relativo all'operazione fatta;
+
+                AjaxMessageStop();
+
+                if (_success == true) {
+
+                    var _UserSession = $.parseJSON(myResponse.obj);
+                    var _UserSessionInStorage = {
+                        "token": _UserSession.token,
+                        "dataorascadenzatoken": _UserSession.dataorascadenzatoken,
+                        "username": _UserSession.username,
+                        "versioneprogramma": _UserSession.versioneprogramma,
+                        "sottoversioneprogramma": _UserSession.sottoversioneprogramma
+                    };
+
+                    // 1) CLEAR
+                    clearAllUserLoginData();
+
+                    // 2) LOCAL STORAGE O SESSION STORAGE?
+                    // remember me ? Local storage! Non remember? allora solo Session storage
+                    if ($('#chkRememberMe').is(':checked')) {
+                        localStorage.setItem("usersession", JSON.stringify(_UserSessionInStorage));
+                        localStorage.setItem("aliquotaivacollection", JSON.stringify([]));
+                        localStorage.setItem("udmcollection", JSON.stringify([]));
+                        localStorage.setItem("sezionalecollection", JSON.stringify([]));
+
+                        localStorage.setItem("tipopagamentocollection", JSON.stringify([]));
+                        localStorage.setItem("condizionipagamentocollection", JSON.stringify([]));
+                        localStorage.setItem("coordinatebancariecollection", JSON.stringify([]));
+                        localStorage.setItem("tipofatturaclientecollection", JSON.stringify([]));
+                        localStorage.setItem("soggettocollection", JSON.stringify([]));
+                        localStorage.setItem("articolocollection", JSON.stringify([]));
+                        localStorage.setItem("tipoesigibilitaivacollection", JSON.stringify([]));
+
+                        localStorage.setItem("azienda", JSON.stringify({}));
+
+                    } else {
+                        sessionStorage.setItem("usersession", JSON.stringify(_UserSessionInStorage));
+                        sessionStorage.setItem("aliquotaivacollection", JSON.stringify([]));
+                        sessionStorage.setItem("udmcollection", JSON.stringify([]));
+                        sessionStorage.setItem("sezionalecollection", JSON.stringify([]));
+
+                        sessionStorage.setItem("tipopagamentocollection", JSON.stringify([]));
+                        sessionStorage.setItem("condizionipagamentocollection", JSON.stringify([]));
+                        sessionStorage.setItem("coordinatebancariecollection", JSON.stringify([]));
+                        sessionStorage.setItem("tipofatturaclientecollection", JSON.stringify([]));
+                        sessionStorage.setItem("soggettocollection", JSON.stringify([]));
+                        sessionStorage.setItem("articolocollection", JSON.stringify([]));
+                        sessionStorage.setItem("tipoesigibilitaivacollection", JSON.stringify([]));
+
+                        sessionStorage.setItem("azienda", JSON.stringify({}));
+                    };
+
+                    // 3) POPOLO myStorage nella fnc isUserLoggedIn
+                    var successlogin = isUserLoggedIn(); //SERVE SOLO EPR RICHIAMARE LA FNC
+                    //if (isUserLoggedIn()) {
+                    //    // ***************************************************
+                    //    //AVVIA POPOLAMENTO DI TUTTE LE COLLECTIONS ACCESSORIE
+                    //    // ***************************************************
+                    //    PopolaCollections();
+                    //};
+
+
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    // COMMENTATA X BUG BOOTSTRAP 4.1.0
+                    // DA RIATTIVARE CON BOOTSTRAP 4.1.1
+                    $('#myModalLogin').modal('hide');
+
+
+
+                    // CONTROLLO VERSIONE SERVER/CLIENT
+                    var _message = '';
+                    if (versioneProgrammaClient != _UserSession.versioneprogramma) {
+                        _message = 'ATTENZIONE! Stai usando una versione client non compatibile con la versione server.<br />E\' necessario un aggiornamento.<br />Contatta l\'assitenza.';
+                        openPopupMessage('error', _message);
+                        clearAllUserLoginData();
+                        return;
+                    };
+
+                    PageLoad();
+
+                } else {
+                    //alert("Login error; Message: " + _errormessage + ";errorcode=" + _errorcode);
+                    $("#boxloginMessage").empty().append($.parseHTML('<span style="color:red;">Autenticazione non riuscita!<br />' + _errormessage + '</span>'));
+                };
+
+            }).fail(function (xhdr, statusText, errorText) {
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                $("#boxloginMessage").empty().append($.parseHTML('<span style="color:red;">Autenticazione non riuscita!<br />' + errorText + '</span>'));
+
+            });
+        });
+
+        function doLogout() {
+            clearAllUserLoginData();
+            location.reload();
+        };
+
+        function isUserLoggedIn() {
+
+            var _userLoggerIn = false;
+            var _now = new Date();
+            var _dataorascadenzatoken;
+
+            //ESISTE IL LOCAL STORAGE ?
+            if (localStorage.getItem("usersession") === null) {
+
+                //SE NON ESISTE, ALLORA ESISTE IL SESSION STORAGE ?
+                if (sessionStorage.getItem("usersession") === null) {
+                    _userLoggerIn = false;
+                } else {
+                    //CONTROLLO SCADENZA TOKEN NELLA SESSION
+                    _dataorascadenzatoken = new Date($.parseJSON(sessionStorage.usersession).dataorascadenzatoken);
+                    if (_dataorascadenzatoken > _now) {
+                        myStorage.token = $.parseJSON(sessionStorage.usersession).token;
+                        myStorage.username = $.parseJSON(sessionStorage.usersession).username;
+                        myStorage.dataorascadenzatoken = $.parseJSON(sessionStorage.usersession).dataorascadenzatoken;
+                        myStorage.versioneprogramma = $.parseJSON(sessionStorage.usersession).versioneprogramma;
+                        myStorage.sottoversioneprogramma = $.parseJSON(sessionStorage.usersession).sottoversioneprogramma;
+
+                        //if (sessionStorage.getItem("aliquotaivacollection") !== null) {
+                        //    myStorage.aliquotaivacollection = $.parseJSON(sessionStorage.aliquotaivacollection);
+                        //};
+                        //if (sessionStorage.getItem("udmcollection") !== null) {
+                        //    myStorage.udmcollection = $.parseJSON(sessionStorage.udmcollection);
+                        //};
+                        //if (sessionStorage.getItem("sezionalecollection") !== null) {
+                        //    myStorage.sezionalecollection = $.parseJSON(sessionStorage.sezionalecollection);
+                        //}
+
+                        //if (sessionStorage.getItem("tipopagamentocollection") !== null) {
+                        //    myStorage.tipopagamentocollection = $.parseJSON(sessionStorage.tipopagamentocollection);
+                        //}
+                        //if (sessionStorage.getItem("condizionipagamentocollection") !== null) {
+                        //    myStorage.condizionipagamentocollection = $.parseJSON(sessionStorage.condizionipagamentocollection);
+                        //}
+                        //if (sessionStorage.getItem("coordinatebancariecollection") !== null) {
+                        //    myStorage.coordinatebancariecollection = $.parseJSON(sessionStorage.coordinatebancariecollection);
+                        //}
+
+                        _userLoggerIn = true;  //OK
+                    };
+                };
+
+            } else {
+
+                //CONTROLLO SCADENZA TOKEN NEL LOCAL STORAGE
+                _dataorascadenzatoken = new Date($.parseJSON(localStorage.usersession).dataorascadenzatoken);
+                if (_dataorascadenzatoken > _now) {
+                    myStorage.token = $.parseJSON(localStorage.usersession).token;
+                    myStorage.username = $.parseJSON(localStorage.usersession).username;
+                    myStorage.dataorascadenzatoken = $.parseJSON(localStorage.usersession).dataorascadenzatoken;
+                    myStorage.versioneprogramma = $.parseJSON(localStorage.usersession).versioneprogramma;
+                    myStorage.sottoversioneprogramma = $.parseJSON(localStorage.usersession).sottoversioneprogramma;
+
+                    //if (localStorage.getItem("aliquotaivacollection") !== null) {
+                    //    myStorage.aliquotaivacollection = $.parseJSON(localStorage.aliquotaivacollection);
+                    //};
+                    //if (localStorage.getItem("udmcollection") !== null) {
+                    //    myStorage.udmcollection = $.parseJSON(localStorage.udmcollection);
+                    //};
+                    //if (localStorage.getItem("sezionalecollection") !== null) {
+                    //    myStorage.sezionalecollection = $.parseJSON(localStorage.sezionalecollection);
+                    //};
+                    //if (localStorage.getItem("tipopagamentocollection") !== null) {
+                    //    myStorage.tipopagamentocollection = $.parseJSON(localStorage.tipopagamentocollection);
+                    //};
+                    //if (localStorage.getItem("condizionipagamentocollection") !== null) {
+                    //    myStorage.condizionipagamentocollection = $.parseJSON(localStorage.condizionipagamentocollection);
+                    //};
+                    //if (localStorage.getItem("coordinatebancariecollection") !== null) {
+                    //    myStorage.coordinatebancariecollection = $.parseJSON(localStorage.coordinatebancariecollection);
+                    //};
+                    
+                    _userLoggerIn = true;  //OK
+                };
+            };
+
+            if (_userLoggerIn == false) {
+                // CLEAR
+                clearAllUserLoginData();
+
+                $('#btnDoLogout').hide();
+                $('#btnOpenModalLogin').show();
+                $('#lblUsername').empty();
+            } else {
+                $('#btnDoLogout').show();
+                $('#btnOpenModalLogin').hide();
+                $('#lblUsername').empty().append(myStorage.username);
+
+                var _dd = ('0' + _dataorascadenzatoken.getDate());
+                _dd = _dd.substr(_dd.length - 2);
+                var _MM = ('0' + (_dataorascadenzatoken.getMonth() + 1));
+                _MM = _MM.substr(_MM.length - 2);
+                var _yy = _dataorascadenzatoken.getFullYear();
+                var _hh = ('0' + _dataorascadenzatoken.getHours());
+                _hh = _hh.substr(_hh.length - 2);
+                var _mm = ('0' + _dataorascadenzatoken.getMinutes());
+                _mm = _mm.substr(_mm.length - 2);
+
+                $('#InfoUtente_Username').empty().append(myStorage.username);
+                $('#InfoUtente_dataoraScadenzaToken').empty().append(_dd + "/" + _MM + "/" + _yy + " " + _hh + ":" + _mm);
+
+                $('#InfoUtente_versioneProgrammaClient').empty().append(versioneProgrammaClient);
+                $('#InfoUtente_sottoVersioneProgrammaClient').empty().append(sottoVersioneProgrammaClient);
+                $('#InfoUtente_versioneProgrammaServer').empty().append(myStorage.versioneprogramma);
+                $('#InfoUtente_sottoVersioneProgrammaServer').empty().append(myStorage.sottoversioneprogramma);
+                //var _message = '<div class="alert alert-success" role="alert">OK</div >';
+                //if (versioneProgrammaClient != myStorage.versioneprogramma) {
+                //    _message = '<div class="alert alert-danger" role="alert">ATTENZIONE! Stai usando una versione client non compatibile con la versione server.<br />Contatta l\'assitenza</div >';
+                //}
+                //$('#InfoUtente_message').empty().append(_message);
+
+            };
+
+            //DEBUG
+            //var y = myStorage.dataorascadenzatoken;
+            //var x = myStorage.username;
+            //var z = myStorage.token;
+
+            return _userLoggerIn;
+
+        };
+
+        function clearAllUserLoginData() {
+            localStorage.clear();
+            sessionStorage.clear();
+            myStorage.token = "";
+            myStorage.username = "";
+            myStorage.dataorascadenzatoken = "";
+            $('#InfoUtente_Username').text('');
+            $('#InfoUtente_dataoraScadenzaToken').text('');
+        };
+
+        function openModalInfoUtente() {
+            $('#myModalInfoUtente').modal("show");
+        };
+        
+        function popolaHeaderFooter() {
+
+            //header
+            var _siteTitle = $.parseJSON(localStorage.SiteConfig).nomeSito;
+            $('#mySiteName').html(_siteTitle);
+            document.title = _siteTitle;
+            var _siteDescription = $.parseJSON(localStorage.SiteConfig).descrizioneSito;
+            $('#mySiteDescription').html(_siteDescription);
+            $('meta[name=description]').attr('content', _siteDescription);
+            $('#lblCopyright').text($.parseJSON(localStorage.SiteConfig).copyright);
+            
+            //header
+            $('#txtTitolareSito_RagioneSociale').html($.parseJSON(localStorage.SiteConfig).titolareSito.ragioneSociale);
+            $('#txtTitolareSito_PIVA').html('P.Iva ' + $.parseJSON(localStorage.SiteConfig).titolareSito.piva);
+            
+        };
+
+        // *****************
+        // UTILITA' GENERALE
+        // *****************
+        $('body').on('click', '.preventDefaultOnMe', function (event) {
+            event.preventDefault();
+        });
+
+        function getNewUid() {
+            //function s4() {
+            //    return Math.floor((1 + Math.random()) * 0x10000)
+            //        .toString(16)
+            //        .substring(1);
+            //}
+            //return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        };
+
+        function isGuid(value) {
+            var regex = /[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/i;
+            var match = regex.exec(value);
+            return match != null;
+        };
+
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        };
+
+        function AjaxMessageStart() {
+            $('#FullPageOverlay').show();
+            //$('#loading').attr('style', 'line-height:50px;');
+        };
+
+        function AjaxMessageStop() {
+            $('#FullPageOverlay').hide();
+            //$('#loading').attr('style', 'line-height:50px;display:none;');
+        };
+
+        function openPopupMessage(tipo, messaggio) {
+            if (tipo == "error") {
+                $('#myMessage').empty().append('<span style="color:red;"><i class="fa fa-exclamation-triangle fa-3x"></i></span>&nbsp;' + messaggio)
+                $('#myModalMessage').modal("show");
+            };
+            if (tipo == "success") {
+                $('#myMessage').empty().append('<span style="color:green;"><i class="fas fa-check fa-3x"></i></span>&nbsp;&nbsp;' + messaggio)
+                $('#myModalMessage').modal("show");
+            };
+            if (tipo == "info") {
+                $('#myMessage').empty().append('<span style="color:black;"><i class="fas fa-info-circle fa-3x"></i></span>&nbsp;' + messaggio)
+                $('#myModalMessage').modal("show");
+            };
+        };
+
+        function getUrlParams(prop) {
+            var params = {};
+            var search = decodeURIComponent(window.location.href.slice(window.location.href.indexOf('?') + 1));
+            var definitions = search.split('&');
+            definitions.forEach(function (val, key) {
+                var parts = val.split('=', 2);
+                params[parts[0]] = parts[1];
+            });
+            return (prop && prop in params) ? params[prop] : null;
+        };
+
+        function setUrlParam(page, UrlParamKey, UrlParamValue) {
+
+            var queryParameters = {},
+                queryString = location.search.substring(1),
+                re = /([^&=]+)=([^&]*)/g,
+                m;
+
+            // Creates a map with the query string parameters
+            while (m = re.exec(queryString)) {
+                queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+
+            // Add new parameters or update existing ones
+            queryParameters[UrlParamKey] = UrlParamValue;
+            //queryParameters['newParameter'] = 'newParameter1';
+            //queryParameters['existingParameter'] = 'newValue1';
+
+            //var u = queryParameters;
+            //index.html?page=AssistenzaCommerciale
+            queryParameters['page'] = page;
+
+            /*
+             * Replace the query portion of the URL.
+             * jQuery.param() -> create a serialized representation of an array or
+             *     object, suitable for use in a URL query string or Ajax request.
+             */
+            location.search = $.param(queryParameters); // Causes page to reload
+        };
+        
+
+        // ******************************************************************************
+        //* jquery.binarytransport.js
+        //* @description. jQuery ajax transport for making binary data type requests.
+        //* @version 1.0
+        //* @author Henry Algus <henryalgus@gmail.com>
+        // ******************************************************************************
+        // use this transport for "binary" data type
+        $.ajaxTransport("+binary", function (options, originalOptions, jqXHR) {
+            // check for conditions and support for blob / arraybuffer response type
+            if (window.FormData && ((options.dataType && (options.dataType == 'binary')) || (options.data && ((window.ArrayBuffer && options.data instanceof ArrayBuffer) || (window.Blob && options.data instanceof Blob))))) {
+                return {
+                    // create new XMLHttpRequest
+                    send: function (_, callback) {
+                        // setup all variables
+                        var xhr = new XMLHttpRequest(),
+                            url = options.url,
+                            type = options.type,
+                            // blob or arraybuffer. Default is blob
+                            dataType = options.responseType || "blob",
+                            data = options.data || null;
+
+                        xhr.addEventListener('load', function () {
+                            var data = {};
+                            data[options.dataType] = xhr.response;
+                            // make callback and send data
+                            callback(xhr.status, xhr.statusText, data, xhr.getAllResponseHeaders());
+                        });
+
+                        xhr.open(type, url, true);
+                        xhr.responseType = dataType;
+                        xhr.send(data);
+                    },
+                    abort: function () {
+                        jqXHR.abort();
+                    }
+                };
+            }
+        });
+        // ******************************************************************************
+        // fine jquery.binarytransport.js
+        // ******************************************************************************
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2075 @@
+﻿<div class="container">
+
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <h2>Archivio Fatture Cliente</h2>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="spacerh10"></div>
+        </div>
+    </div>
+
+    <div class="row no-gutters">
+
+        <div class="col-12 col-sm-10 col-md-8 col-lg-8 offset-sm-1 offset-md-2 offset-lg-2">
+
+            <div class="card">
+                <div class="card-header bg-primary text-white">Filtro fatture</div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <label>Cliente</label>
+
+                            <div class="input-group">
+
+                                <input type="text" id="txtDescrSoggettoSearch" class="form-control" maxlength="10" disabled />
+                                <input type="hidden" id="txtUidSoggettoSearch" />
+
+                                <span class="input-group-btn">
+                                    <button id="btnOpenModalArchivioClienti" class="btn btn-default" type="button">Seleziona</button>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh10"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label>Data Inizio</label>
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label>Data Fine</label>
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <label>Sezionale</label>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <input type="text" id="txtDataInizio" class="form-control" maxlength="10" />
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <input type="text" id="txtDataFine" runat="server" class="form-control" maxlength="10" />
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                            <select id="ddlSezionale" class="form-control"></select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh10"></div>
+                        </div>
+                    </div>
+
+                    <!--<div class="row">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-6 offset-sm-3 offset-md-3 offset-lg-3">
+                            <button type="button" id="btnFind" class="btn btn-primary btn-lg btn-block">cerca</button>
+                        </div>
+                    </div>-->
+
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <button type="button" id="btnFind" class="btn btn-primary btn-lg">cerca</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="spacerh20"></div>
+            <div class="spacerh20"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <h5>i miei documenti</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="list-group" id="myList">
+                        <!--<ul class="list-group" id="myList">
+                        </ul>-->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="alert alert-primary" role="alert">
+
+                <div class="row no-gutters">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="text-center">
+                            <span>pag. <span id="txtCurrentPageIndex"></span> di <span id="txtPageCount"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row no-gutters">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <!--<nav aria-label="page navigation Archivio Clienti">-->
+                        <ul class="pagination justify-content-center float-left">
+                            <li class="page-item disabled">
+                                <a class="page-link preventDefaultOnMe" href="#" tabindex="-1" id="btnPagingGoToFirst">&lt;&lt;</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoBack">&lt;</a>
+                            </li>
+                        </ul>
+                        <!--</nav>-->
+                    </div>
+                    <!--Hidden only on xs-->
+                    <!--<div class="col-sm-4 col-md-4 col-lg-4 d-none d-sm-block">
+                        <div class="d-none d-sm-block">
+                        </div>
+                    </div>-->
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <!-- paging -->
+                        <!--<nav aria-label="page navigation Archivio Clienti">-->
+                        <ul class="pagination justify-content-center float-right">
+                            <!--<li class="page-item disabled">
+                                <a class="page-link preventDefaultOnMe" href="#" tabindex="-1" id="btnPagingGoToFirst">&lt;&lt;</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoBack">&lt;</a>
+                            </li>-->
+                            <li class="page-item">
+                                <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoForward">&gt;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoToLast">&gt;&gt;</a>
+                            </li>
+                        </ul>
+                        <!--</nav>-->
+                        <!-- /paging -->
+                        <!--<li class="page-item disabled" style="padding-left:6px;padding-right:6px;padding-top:3px;"><span>pag. <span id="txtCurrentPageIndex"></span> di <span id="txtPageCount"></span></span></li>-->
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+
+            <!-- ############# TABS ################ -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="nav-item-myTab0" href="#myTab0" role="tab">Testata</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-item-myTab1" href="#myTab1" role="tab">Dettaglio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-item-myTab2" href="#myTab2" role="tab">Stato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-item-myTab3" href="#myTab3" role="tab">Incasso</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-item-myTab4" href="#myTab4" role="tab">Allegati</a>
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="spacerh30"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade show active" id="myTab0" role="tabpanel" aria-labelledby="home-myTab0">
+                    <!-- ############ Tab0 start ################# -->
+
+                    <div id="empty-myTab0">
+                        <div style="padding:100px 0 100px 0;">
+                            <h4 style="text-align:center;">seleziona un documento</h4>
+                        </div>
+                    </div>
+
+                    <div id="content-myTab0">
+
+                        <div class="alert alert-primary" role="alert">
+                            <div class="row no-gutters">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div id="boxTestataRiferimentiDocumento"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ######################### VERSIONE XS (.d-block .d-sm-none) Visible only on xs ######################## -->
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Visualizza il documento</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Stampa documento in formato .Pdf</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doStampaPdfFn();"><i class="fas fa-print"></i>&nbsp;Stampa .PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Scarica il documento in formato .xml</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doDownloadXmlFn();"><i class="fas fa-download"></i>&nbsp;Download .XML</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Verifica formale di correttezza prima dell'invio al Cliente</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVerificaFormaleFn();"><i class="fas fa-check"></i>&nbsp;Verifica formale</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Invia il documento a Cliente (tramite SDI)</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invio a Cliente</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Modifica il documento; ripeti la procedura per correggere eventuali errori</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doEditFn();"><i class="fas fa-pencil-alt"></i>&nbsp;Modifica documento</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block d-sm-none">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>Elimina il documento dall'archivio; non sarà più possibile recuperare il documento eliminato</p>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doDeleteFn();"><i class="far fa-trash-alt"></i>&nbsp;Elimina documento</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ######################### /VERSIONE XS Visible only on xs ######################## -->
+                        <!-- ######################### VERSIONE sm md lg xl (Hidden xs) ######################## -->
+
+                        <div class="row d-none d-sm-block">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Visualizza</h5>-->
+                                    <p class="card-text">Visualizza il contenuto del documento selezionato</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Stampa</h5>-->
+                                    <p class="card-text">Stampa documento in formato .Pdf</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doStampaPdfFn();"><i class="fas fa-print"></i>&nbsp;Stampa .PDF</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-none d-sm-block">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="row d-none d-sm-block">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Download</h5>-->
+                                    <p class="card-text">Scarica il documento in formato .xml</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Verifica</h5>-->
+                                    <p class="card-text">Verifica la correttezza formale della fattura elettronica prima dell'invio al Cliente</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doDownloadXmlFn();"><i class="fas fa-download"></i>&nbsp;Download .XML</button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVerificaFormaleFn();"><i class="fas fa-check"></i>&nbsp;Verifica</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-none d-sm-block">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+                        <div class="row d-none d-sm-block">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Download</h5>-->
+                                    <p class="card-text">Invia il documento a Cliente (tramite SDI)</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Verifica</h5>-->
+                                    <p class="card-text">Modifica il documento; ripeti i passaggi della procedura per correggere eventuali errori</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invio a Cliente</button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doEditFn();"><i class="fas fa-pencil-alt"></i>&nbsp;Modifica documento</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="spacerh20 d-none d-sm-block"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <!--<h5>Download</h5>-->
+                                    <p class="card-text">Elimina il documento dall'archivio; non sarà più possibile recuperare il documento</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doDeleteFn();"><i class="far fa-trash-alt"></i>&nbsp;Elimina documento</button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="d-none d-sm-block">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ######################### /VERSIONE sm md lg xl (Hidden xs) ######################## -->
+
+                    </div><!-- /content-myTab0 -->
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh20"></div>
+                        </div>
+                    </div>
+
+                    <!-- ############ /Tab0 ################# -->
+                </div>
+
+                <div class="tab-pane fade" id="myTab1" role="tabpanel" aria-labelledby="home-myTab1">
+                    <!-- ############ Tab1 start ################# -->
+
+                    <div id="empty-myTab1">
+                        <div style="padding:100px 0 100px 0;">
+                            <h4 style="text-align:center;">seleziona un documento</h4>
+                        </div>
+                    </div>
+                    <div id="content-myTab1">
+
+                        <div class="container">
+
+                            <div class="row no-gutters">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <h4 id="RiepilogoDocumento_Header"></h4>
+                                </div>
+                            </div>
+
+                            <div class="row no-gutters">
+                                <div class="col-11 col-sm-5 col-md-5 col-lg-5">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Data e Numero</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="RiepilogoDocumento_DataNumero"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-1 col-sm-1 col-md-1 col-lg-1">
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Cliente</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="RiepilogoDocumento_Cliente"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="spacerh20"></div>
+                                </div>
+                            </div>
+
+                            <div class="row no-gutters">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Pagamento</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="RiepilogoDocumento_ModalitaPagamento"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="spacerh20"></div>
+                                </div>
+                            </div>
+
+                            <div class="row no-gutters">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Righe</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-striped table-sm" id="RiepilogoDocumento_Righe">
+                                                <thead><tr><th>codice</th><th>descrizione</th><th>udm</th><th>qta</th><th>importo<br />unit.</th><th>iva</th></tr></thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="spacerh20"></div>
+                                </div>
+                            </div>
+
+                            <div class="row no-gutters">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Altre informazioni</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="RiepilogoDocumento_Altro"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="spacerh20"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div><!-- /content-myTab1 -->
+                    <!-- ############ /Tab1 ################# -->
+                </div>
+
+                <div class="tab-pane fade" id="myTab2" role="tabpanel" aria-labelledby="home-myTab2">
+                    <!-- ############ Tab2 start ################# -->
+                    <div id="empty-myTab2">
+                        <div style="padding:100px 0 100px 0;">
+                            <h4 style="text-align:center;">seleziona un documento</h4>
+                        </div>
+                    </div>
+                    <div id="content-myTab2">
+                        <span>myTab2 content</span>
+                    </div><!-- /content-myTab1 -->
+                    <!-- ############ /Tab2 ################# -->
+                </div>
+
+                <div class="tab-pane fade" id="myTab3" role="tabpanel" aria-labelledby="home-myTab3">
+                    <!-- ############ Tab3 start ################# -->
+                    <div id="empty-myTab3">
+                        <div style="padding:100px 0 100px 0;">
+                            <h4 style="text-align:center;">seleziona un documento</h4>
+                        </div>
+                    </div>
+                    <div id="content-myTab3">
+                        <span>myTab3 content</span>
+                    </div><!-- /content-myTab1 -->
+                    <!-- ############ /Tab3 ################# -->
+                </div>
+
+                <div class="tab-pane fade" id="myTab4" role="tabpanel" aria-labelledby="home-myTab4">
+                    <!-- ############ Tab4 start ################# -->
+                    <div id="empty-myTab4">
+                        <div style="padding:100px 0 100px 0;">
+                            <h4 style="text-align:center;">seleziona un documento</h4>
+                        </div>
+                    </div>
+                    <div id="content-myTab4">
+
+                    </div><!-- /content-myTab1 -->
+                    <!-- ############ /Tab4 ################# -->
+                </div>
+
+            </div>
+            <!-- ############# /TABS ################ -->
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Modal Archivio Clienti -->
+<div class="modal fade" id="myModalArchivioClienti" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Archivio Clienti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- ######## inizio ######## -->
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <!--<label for="txtSearchArchivioClienti">--><strong>Cerca</strong><!--</label>-->
+                            <small><br />ragione sociale o p.iva o c.f. o nome abituale anche parziale</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="input-group mb-3">
+                                <input id="txtSearchArchivioClienti" type="text" class="form-control" placeholder="ragione sociale o p.iva o c.f. o nome abituale" aria-label="ragione sociale o p.iva o c.f. o nome abituale" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="btnStartSearchArchivioClienti">trova</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <table class="table table-striped table-sm" id="tblArchivioClienti">
+                                <!--<thead>
+                                    <tr>
+                                        <th scope="col" style="width:90%;">Ragione sociale</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>-->
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- ######## fine  ######## -->
+            </div>
+
+
+            <div class="modal-footer">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <nav aria-label="page navigation Archivio Clienti">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link preventDefaultOnMe" href="#" tabindex="-1" id="btnPagingGoToFirst_ArchivioClienti">&lt;&lt;</a>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoBack_ArchivioClienti">&lt;</a>
+                                    </li>
+                                    <li class="page-item disabled" style="padding-left:6px;padding-right:6px;padding-top:3px;"><span>pag. <span id="txtCurrentPageIndex_ArchivioClienti"></span> di <span id="txtPageCount_ArchivioClienti"></span></span></li><!---->
+                                    <li class="page-item">
+                                        <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoForward_ArchivioClienti">&gt;</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link preventDefaultOnMe" href="#" id="btnPagingGoToLast_ArchivioClienti">&gt;&gt;</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var myObjFattura = new Entities.FatturaCli;
+    var myObjCliente = new Entities.Soggetto;
+
+    $('#txtDataInizio').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome',
+        format: 'dd/mm/yyyy'
+    });
+    $('#txtDataFine').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome',
+        format: 'dd/mm/yyyy'
+    });
+
+    //Default valori iniziali
+    var oggi = new Date();
+    var year = oggi.getFullYear();
+    $("#txtDataInizio").val(moment(new Date(year, 1 - 1, 1)).format("DD/MM/YYYY"));
+    $("#txtDataFine").val(moment(new Date(year, 12 - 1, 31)).format("DD/MM/YYYY"));
+    $('#txtDescrSoggettoSearch').val('-- TUTTI I CLIENTI --');
+    $('#txtUidSoggettoSearch').val(EmptyUid);
+
+    $(document).ready(function () {
+        PageLoad();
+    });
+
+    function PageLoad() {
+
+        //STATO DEGLI OGGETTI IN PAGINA
+        setStatoOggetti(false, false, false, false, false);
+
+        if (!isUserLoggedIn()) {
+            $('#myModalLogin').modal("show");
+            return;
+        };
+
+        CurrentPageIndex = 0; //zero based
+        // DA ULTIMO POPOLA IN CASCATA IL LIST DEI DOCUMENTI
+        PopolaCollections();
+        //popolaList(CurrentPageIndex);
+    };
+
+
+    /* *******************************
+        TABS NAVIGATION
+     ********************************* */
+
+    $('#nav-item-myTab0').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $('#nav-item-myTab1').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $('#nav-item-myTab2').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $('#nav-item-myTab3').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    $('#nav-item-myTab4').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+
+    /* *******************************
+     * STATO OGGETTI
+     * ******************************* */
+    function setStatoOggetti(isVisibleTab0, isVisibleTab1, isVisibleTab2, isVisibleTab3, isVisibleTab4) {
+
+        if (isVisibleTab0) {
+            $('#content-myTab0').removeClass('d-none').addClass('d-block');
+            $('#empty-myTab0').removeClass('d-block').addClass('d-none');
+        } else {
+            $('#content-myTab0').removeClass('d-block').addClass('d-none');
+            $('#empty-myTab0').removeClass('d-none').addClass('d-block');
+        }
+        if (isVisibleTab1) {
+            $('#content-myTab1').removeClass('d-none').addClass('d-block');
+            $('#empty-myTab1').removeClass('d-block').addClass('d-none');
+        } else {
+            $('#content-myTab1').removeClass('d-block').addClass('d-none');
+            $('#empty-myTab1').removeClass('d-none').addClass('d-block');
+        }
+        if (isVisibleTab2) {
+            $('#content-myTab2').removeClass('d-none').addClass('d-block');
+            $('#empty-myTab2').removeClass('d-block').addClass('d-none');
+        } else {
+            $('#content-myTab2').removeClass('d-block').addClass('d-none');
+            $('#empty-myTab2').removeClass('d-none').addClass('d-block');
+        }
+        if (isVisibleTab3) {
+            $('#content-myTab3').removeClass('d-none').addClass('d-block');
+            $('#empty-myTab3').removeClass('d-block').addClass('d-none');
+        } else {
+            $('#content-myTab3').removeClass('d-block').addClass('d-none');
+            $('#empty-myTab3').removeClass('d-none').addClass('d-block');
+        }
+        if (isVisibleTab4) {
+            $('#content-myTab4').removeClass('d-none').addClass('d-block');
+            $('#empty-myTab4').removeClass('d-block').addClass('d-none');
+        } else {
+            $('#content-myTab4').removeClass('d-block').addClass('d-none');
+            $('#empty-myTab4').removeClass('d-none').addClass('d-block');
+        }
+
+    }
+
+    /* *******************************
+        List
+    ********************************** */
+    var CurrentPageIndex = 0; //zero based
+    var PageCount = 0;
+    function popolaList(_CurrentPageIndex) //, _datainizio, _datafine, UidTipoSezionale, UidSoggetto)
+    {
+        if (moment($("#txtDataInizio").val(), "DD/MM/YYYY").isValid() == false) {
+            alert('Data inizio non valida');
+            return;
+        };
+        if (moment($("#txtDataFine").val(), "DD/MM/YYYY").isValid() == false) {
+            alert('Data inizio non valida');
+            return;
+        };
+
+        var _datainizioStr = $("#txtDataInizio").val().split("/");
+        var d = parseInt(_datainizioStr[0]),
+            m = parseInt(_datainizioStr[1]),
+            y = parseInt(_datainizioStr[2]);
+        var _datainizio = (new Date(y, m - 1, d)).toJSON();
+
+        var _datafineStr = $("#txtDataFine").val().split("/");
+        d = parseInt(_datafineStr[0]),
+            m = parseInt(_datafineStr[1]),
+            y = parseInt(_datafineStr[2]);
+        var _datafine = (new Date(y, m - 1, d)).toJSON();
+
+        var UidSoggetto = EmptyUid;
+        if ($('#txtUidSoggettoSearch').val() != "") {
+            UidSoggetto = $('#txtUidSoggettoSearch').val();
+        };
+        var UidTipoSezionale = $('#ddlSezionale').val();
+
+
+        CurrentPageIndex = _CurrentPageIndex;
+
+        AjaxMessageStart();
+
+        ///FatturaCliente/list/CurrentPageIndex/{CurrentPageIndex}/DataFatturaInizio/{DataFatturaInizio}/DataFatturaFine/{DataFatturaFine}/UidTipoSezionale/{UidTipoSezionale}/UidSoggetto/{UidSoggetto}
+        $.ajax({
+            method: 'GET',
+            url: myStorage.ApiUrl + '/FatturaCliente/list/CurrentPageIndex/' + _CurrentPageIndex + '/DataFatturaInizio/' + _datainizio + '/DataFatturaFine/' + _datafine + '/UidTipoSezionale/' + UidTipoSezionale + '/UidSoggetto/' + UidSoggetto,
+            beforeSend: function (xhdr) {
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); //$("#token").val());
+            }
+        }).done(function (resp, statusText, xhdr) {
+            var myResponse = $.parseJSON(resp);
+            var success = myResponse.success; // = true;
+            var errormessage = myResponse.errormessage; // = "OK";
+            var errorcode = myResponse.errorcode; // = 0;
+            var pagecount = myResponse.pagecount;
+
+            if (success == true) {
+                var collection = $.parseJSON(myResponse.obj);
+
+                $("#myList").empty();
+                $.each(collection, function (i, obj) {
+                    var tr = '<button type="button" class="list-group-item list-group-item-action selezioneItem pointerOnMe" data-uid="' + obj.uid + '">'
+                        + obj.descrizionereadonly +
+                        + '</button>';
+                    $("#myList").append(tr);
+
+                });
+                if (collection.length == 0) {
+                    var tr = '<div>nessun elemento trovato</li>';
+                    $("#myList").append(tr);
+                };
+
+                // PAGINAZIONE: STATO DEI BUTTONS
+                PageCount = pagecount;
+                $("#btnPagingGoToFirst").parent().removeClass("disabled");
+                $("#btnPagingGoBack").parent().removeClass("disabled");
+                $("#btnPagingGoForward").parent().removeClass("disabled");
+                $("#btnPagingGoToLast").parent().removeClass("disabled");
+                if (CurrentPageIndex == 0) {
+                    $("#btnPagingGoToFirst").parent().addClass("disabled");
+                    $("#btnPagingGoBack").parent().addClass("disabled");
+                }
+                if (CurrentPageIndex == (pagecount - 1)) {
+                    $("#btnPagingGoForward").parent().addClass("disabled");
+                    $("#btnPagingGoToLast").parent().addClass("disabled");
+                }
+
+                $("#txtCurrentPageIndex").text(CurrentPageIndex + 1);
+                $("#txtPageCount").text(PageCount);
+
+            } else {
+                alert("Login error; Message: " + errormessage + ";errorcode=" + errorcode);
+            };
+
+            AjaxMessageStop();
+
+        }).fail(function (xhdr, statusText, errorText) {
+            AjaxMessageStop();
+            //alert("err=" + errorText);
+            openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+        });
+    };
+
+    $("#btnPagingGoToFirst").click(function () {
+        CurrentPageIndex = 0;
+        popolaList(CurrentPageIndex)
+    });
+    $("#btnPagingGoBack").click(function () {
+        CurrentPageIndex -= 1;
+        popolaList(CurrentPageIndex)
+    });
+    $("#btnPagingGoForward").click(function () {
+        CurrentPageIndex += 1;
+        if (PageCount > 1) {
+            if (CurrentPageIndex >= (PageCount - 1)) {
+                CurrentPageIndex = PageCount - 1;
+            }
+        }
+        popolaList(CurrentPageIndex);
+    });
+    $("#btnPagingGoToLast").click(function () {
+        CurrentPageIndex = PageCount - 1;
+        popolaList(CurrentPageIndex);
+    });
+
+    $("#myList").on("click", ".selezioneItem", function () {
+        var uid = $(this).data("uid");
+
+        // SET ACTIVE
+        $("#myList > button").each(function (index, obj) {
+            //console.log(index + ": " + $(this).text());
+            $(this).removeClass("active");
+            if ($(this).data("uid") == uid) {
+                $(this).addClass("active");
+            };
+        });
+
+        getItem(uid);
+
+        // STATO DEGLI OGGETTI IN PAGINA
+        // TAB-0 --> Active
+        setStatoOggetti(true, true, false, false, false);
+        $('#nav-item-myTab0').tab('show');
+    });
+
+    function getItem(uid) {
+
+        AjaxMessageStart();
+
+        $.ajax({
+            method: 'GET',
+            url: myStorage.ApiUrl + '/FatturaCliente/get/' + uid,
+            beforeSend: function (xhdr) {
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); //$("#token").val());
+            }
+        }).done(function (resp, statusText, xhdr) {
+
+            var myResponse = $.parseJSON(resp);
+            var success = myResponse.success; // = true;
+            var errormessage = myResponse.errormessage; // = "OK";
+            var errorcode = myResponse.errorcode; // = 0;
+            var pagecount = myResponse.pagecount;
+
+            if (success == true) {
+
+                myObjFattura = $.parseJSON(myResponse.obj);
+                popolaDettaglioDocumento(myObjFattura);
+
+            } else {
+                alert("Login error; Message: " + errormessage + ";errorcode=" + errorcode);
+            };
+
+            AjaxMessageStop();
+
+        }).fail(function (xhdr, statusText, errorText) {
+
+            AjaxMessageStop();
+            //alert("err=" + errorText);
+            openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+        });
+
+    };
+
+    function popolaDettaglioDocumento(myObjFattura) {
+
+        // ricavo Soggetto
+        AjaxMessageStart();
+
+        $.ajax({
+            method: 'GET',
+            url: myStorage.ApiUrl + '/Soggetto/get/' + myObjFattura.uidsoggetto,
+            beforeSend: function (xhdr) {
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); //$("#token").val());
+            }
+        }).done(function (resp, statusText, xhdr) {
+
+            var myResponse = $.parseJSON(resp);
+            var success = myResponse.success; // = true;
+            var errormessage = myResponse.errormessage; // = "OK";
+            var errorcode = myResponse.errorcode; // = 0;
+            var pagecount = myResponse.pagecount;
+
+            if (success == true) {
+
+                myObjCliente = $.parseJSON(myResponse.obj);
+
+                // ************************
+                // POPOLO tab TESTATA
+                // ************************
+                var _RiferimentiDocumento = '<strong>Cliente:</strong> ' + myObjCliente.ragionesociale;
+                _RiferimentiDocumento += '<br /><strong>Documento:</strong> ' + myObjFattura.numero;
+                var _descrSezionaleRifDoc = ""; //$('#ddlSezionale').find(":selected").text();
+                $.each(myStorage.sezionalecollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtiposezionale) {
+                        _descrSezionaleRifDoc = obj.descrizionereadonly;
+                    }
+                });
+                if (_descrSezionaleRifDoc != "") {
+                    _RiferimentiDocumento += "/" + _descrSezionaleRifDoc;
+                };
+                _RiferimentiDocumento += ' del ' + moment(new Date(myObjFattura.datadocumentoaa, myObjFattura.datadocumentomm - 1, myObjFattura.datadocumentogg)).format("DD/MM/YYYY");
+                _RiferimentiDocumento += '<br /><strong>Importo totale:</strong> &euro; ' + Number(myObjFattura.importototalenettoapagarsireadonly).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                _RiferimentiDocumento += '<br /><strong>Importo iva:</strong> &euro; ' + Number(myObjFattura.importoivareadonly).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                if (parseFloat(myObjFattura.importoritenutaaccontoreadonly) > 0) {
+                    _RiferimentiDocumento += '<br /><strong>Importo ritenuta:</strong> &euro; ' + Number(myObjFattura.importoritenutaaccontoreadonly).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                };
+                $('#boxTestataRiferimentiDocumento').empty().append(_RiferimentiDocumento);
+
+
+                // **********************************************************************
+                // POPOLO tab DETTAGLIO (CON I DATI DEL SOGGETTO + FATTURA + collections)
+                // **********************************************************************
+                var _HeaderDescr = "";
+                if (myObjCliente.ispareadonly) {
+                    _HeaderDescr += "fattura elettronica alla P.A.";
+                } else {
+                    _HeaderDescr += "fattura elettronica B2B a ditta/privato";
+                };
+                $('#RiepilogoDocumento_Header').empty().append(_HeaderDescr);
+
+                var _tipoDoc = ""; //$("input[name='radioTipiDocumento']:checked").parent().find("strong").text();
+                $.each(myStorage.tipofatturaclientecollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtipofatturacliente) {
+                        _tipoDoc = obj.descrizionereadonly;
+                    }
+                });
+
+                var _DataNumeroDescr = "";
+                _DataNumeroDescr += "<strong>Tipo documento:</strong> " + _tipoDoc;
+                _DataNumeroDescr += "<br /><strong>Data</strong>: " + moment(new Date(myObjFattura.datadocumentoaa, myObjFattura.datadocumentomm - 1, myObjFattura.datadocumentogg)).format("DD/MM/YYYY");
+                //if (myObjFattura.numero < 1) {
+                //    _DataNumeroDescr += "<br /><strong>Numero</strong>: " + "numerazione automatica (assegnato dopo il salvataggio)";
+                //}
+                //else {
+                _DataNumeroDescr += "<br /><strong>Numero</strong>: " + myObjFattura.numero;
+
+                var _descrSezionale = ""; //$('#ddlSezionale').find(":selected").text();
+                $.each(myStorage.sezionalecollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtiposezionale) {
+                        _descrSezionale = obj.descrizionereadonly;
+                    }
+                });
+                if (_descrSezionale != "") {
+                    _DataNumeroDescr += " / " + _descrSezionale;
+                }
+                //};
+                $('#RiepilogoDocumento_DataNumero').empty().append(_DataNumeroDescr);
+
+
+                var _ClienteDescr = '<strong>' + myObjCliente.ragionesociale + '</strong>';
+                _ClienteDescr += '<br />' + myObjCliente.sedelegaleindirizzo;
+                _ClienteDescr += '<br />' + myObjCliente.sedelegalecap + ' ' + myObjCliente.sedelegalelocalita + ' ' + myObjCliente.sedelegaleprovincia;
+                if (myObjCliente.cf != "") {
+                    _ClienteDescr += '<br />' + '<strong>c.f.:</strong> ' + myObjCliente.cf;
+                };
+                if (myObjCliente.piva != "") {
+                    _ClienteDescr += '<br />' + '<strong>p.iva:</strong> ' + myObjCliente.piva;
+                };
+                if (myObjCliente.ispareadonly) {
+                    _ClienteDescr += '<br />' + '<strong>codice univoco:</strong> ' + myObjCliente.codiceunivocoipa;
+                } else {
+                    _ClienteDescr += '<br />' + '<strong>pec:</strong> ' + myObjCliente.pec;
+                };
+                $('#RiepilogoDocumento_Cliente').empty().append(_ClienteDescr);
+
+
+                var _ModalitaPagamentoDescr = "<strong>Tipo:</strong>"; //'<strong>Tipo:</strong> ' + $('#ddlTipoPagamento').find(":selected").text();
+                $.each(myStorage.tipopagamentocollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtipopagamento) {
+                        _ModalitaPagamentoDescr += obj.descrizionereadonly;
+                    }
+                });
+                if (myObjFattura.datascadenzapagamentoaa > 1) {
+                    _ModalitaPagamentoDescr += " con data scadenza pagamento " + moment(new Date(myObjFattura.datascadenzapagamentoaa, myObjFattura.datascadenzapagamentomm - 1, myObjFattura.datascadenzapagamentogg)).format("DD/MM/YYYY");
+                };
+
+                _ModalitaPagamentoDescr += '<br /><strong>Modalità:</strong> '; //+ $('#ddlCondizioniPagamento').find(":selected").text();
+                $.each(myStorage.condizionipagamentocollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtipocondizionepagamento) {
+                        _ModalitaPagamentoDescr += obj.descrizionereadonly;
+                    }
+                });
+
+                _ModalitaPagamentoDescr += '<br /><strong>Banca d\'appoggio:</strong> '; //+ $('#ddlCoordinateBancarie').find(":selected").text();
+                $.each(myStorage.coordinatebancariecollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtipocoordinatebancarie) {
+                        _ModalitaPagamentoDescr += obj.descrizionereadonly;
+                    }
+                });
+
+                // CAMPI RITENUTA
+                var _PercContributoPrevidenzialeProfessionisti = parseFloat(myObjFattura.perccontributoprevidenziale); // (; //parseFloat(numberEngFormat($("#txtPercContributoPrevidenzialeProfessionisti").val()));
+                if (_PercContributoPrevidenzialeProfessionisti > 0) {
+                    _ModalitaPagamentoDescr += '<br /><strong>Contributo previdenziale:</strong> ' + Number(_PercContributoPrevidenzialeProfessionisti).toLocaleString("it-IT", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%'; //$("#txtPercContributoPrevidenzialeProfessionisti").val() + '%';
+                    _ModalitaPagamentoDescr += '<br /><strong>Aliquota iva su contr.previd.:</strong> '; // + $('#ddlAliquoteIVAsuContributoPrevidenzialeProfessionisti').find(":selected").text();
+                    $.each(myStorage.aliquotaivacollection, function (i, obj) {
+                        if (obj.uid == myObjFattura.uidtipoaliquotaivasucontributoprevidenziale) {
+                            _ModalitaPagamentoDescr += obj.descrizionereadonly;
+                        };
+                    });
+                };
+
+                var _PercRitenutaAccontoProfessionisti = parseFloat(myObjFattura.percritenutaacconto); //numberEngFormat($("#txtPercRitenutaAccontoProfessionisti").val()));
+                if (_PercRitenutaAccontoProfessionisti > 0) {
+                    _ModalitaPagamentoDescr += '<br /><strong>Ritenuta d\'acconto:</strong> ' + Number(_PercRitenutaAccontoProfessionisti).toLocaleString("it-IT", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%'; //$("#txtPercRitenutaAccontoProfessionisti").val() + '%';
+                };
+
+                // spese anticipo professionisti art.15
+                var _ImportoSpeseAnticipoProfessionistiART15 = parseFloat(myObjFattura.importospeseanticipoprofessionistiart15); //numberEngFormat($('#txtImportoSpeseAnticipoProfessionistiART15').val()));
+                if (_ImportoSpeseAnticipoProfessionistiART15 > 0) {
+                    _ModalitaPagamentoDescr += '<br /><strong>importo spese anticipate Art.15:</strong> ' + Number(_ImportoSpeseAnticipoProfessionistiART15).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // $("#txtImportoSpeseAnticipoProfessionistiART15").val();
+                };
+                $('#RiepilogoDocumento_ModalitaPagamento').empty().append(_ModalitaPagamentoDescr);
+
+
+                var _RigheDescr = "";
+                $.each(myObjFattura.righe, function (i, objRiga) {
+
+                    //UdM
+                    var _UdM = "";
+                    $.each(myStorage.udmcollection, function (i, obj) {
+                        if (obj.uid == objRiga.uidtipounitadimisura) {
+                            _UdM += obj.descrizionereadonly;
+                        };
+                    });
+
+                    //IVA
+                    var _IVA = "";
+                    $.each(myStorage.aliquotaivacollection, function (i, obj) {
+                        if (obj.uid == objRiga.uidtipoaliquotaiva) {
+                            _IVA = obj.percaliquotaiva;
+                        };
+                    });
+
+                    // ADD RIGA FATTURA
+                    var tr = '<tr>'
+                        + '<td>'
+                        + objRiga.codicearticolo
+                        + '</td>'
+                        + '<td>'
+                        + objRiga.descrizioneinfattura
+                        + '</td>'
+                        + '<td>'
+                        + _UdM
+                        + '</td>'
+                        + '<td>'
+                        + Number(parseFloat(objRiga.quantita)).toLocaleString("it-IT", { minimumFractionDigits: 0, maximumFractionDigits: 4 })
+                        + '</td>'
+                        + '<td>'
+                        + Number(parseFloat(objRiga.importounitario)).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 3 })
+                        + '</td>'
+                        + '<td>'
+                        + _IVA
+                        + '</td>'
+                        + '</tr>';
+                    _RigheDescr += tr;
+                });
+                $('#RiepilogoDocumento_Righe tbody').empty().append(_RigheDescr);
+
+
+                var _AltroDescr = '<strong>Esigibilità IVA:</strong> '; //+ $("#ddlEsigibilitaIVA").find(":selected").text();
+                $.each(myStorage.tipoesigibilitaivacollection, function (i, obj) {
+                    if (obj.uid == myObjFattura.uidtipoesigibilitaiva) {
+                        _AltroDescr += obj.descrizionereadonly;
+                    };
+                });
+
+                if (myObjFattura.opzionalepa_ordinediacquisto_numeroordine != "") {
+                    _AltroDescr += '<br /><strong>Ordine di Acquisto Numero d\'Ordine:</strong> ' + myObjFattura.opzionalepa_ordinediacquisto_numeroordine; //$("#txtDatiOrdineAcquisto_IdDocumento").val();
+                };
+                if (myObjFattura.opzionalepa_ordinediacquisto_datacontrattoaa > 1) {
+                    _AltroDescr += '<br /><strong>Ordine di Acquisto Data:</strong> ' + moment(new Date(myObjFattura.opzionalepa_ordinediacquisto_datacontrattoaa, myObjFattura.opzionalepa_ordinediacquisto_datacontrattomm - 1, myObjFattura.opzionalepa_ordinediacquisto_datacontrattogg)).format("DD/MM/YYYY"); //$("#txtDatiOrdineAcquisto_Data").val();
+                };
+                if (myObjFattura.opzionalepa_ordinediacquisto_codicecup != "") {
+                    _AltroDescr += '<br /><strong>Ordine di Acquisto CUP:</strong> ' + myObjFattura.opzionalepa_ordinediacquisto_codicecup; //$("#txtDatiOrdineAcquisto_CodiceCUP").val();
+                };
+                if (myObjFattura.opzionalepa_ordinediacquisto_codicecig != "") {
+                    _AltroDescr += '<br /><strong>Ordine di Acquisto CIG:</strong> ' + myObjFattura.opzionalepa_ordinediacquisto_codicecig; //$("#txtDatiOrdineAcquisto_CodiceCIG").val();
+                };
+                if (myObjFattura.opzionalepa_ordinediacquisto_codicecommessaconvenzione != "") {
+                    _AltroDescr += '<br /><strong>Ordine di Acquisto Codice Commessa/Convenzione:</strong> ' + myObjFattura.opzionalepa_ordinediacquisto_codicecommessaconvenzione;// $("#txtDatiOrdineAcquisto_CodiceCommessaConvenzione").val();
+                };
+                if (myObjFattura.opzionalepa_daticontratto_numerocontratto != "") {
+                    _AltroDescr += '<br /><strong>Contratto Num. Contratto:</strong> ' + myObjFattura.opzionalepa_daticontratto_numerocontratto; //$("#txtDatiContratto_IdDocumento").val();
+                };
+                if (myObjFattura.opzionalepa_daticontratto_datacontrattoaa > 1) {
+                    _AltroDescr += '<br /><strong>Contratto Data:</strong> ' + moment(new Date(myObjFattura.opzionalepa_daticontratto_datacontrattoaa, myObjFattura.opzionalepa_daticontratto_datacontrattomm - 1, myObjFattura.opzionalepa_daticontratto_datacontrattogg)).format("DD/MM/YYYY"); //$("#txtDatiContratto_Data").val();
+                };
+                if (myObjFattura.opzionalepa_daticontratto_codicecup != "") {
+                    _AltroDescr += '<br /><strong>Contratto CUP:</strong> ' + myObjFattura.opzionalepa_daticontratto_codicecup; //$("#txtDatiContratto_CodiceCUP").val();
+                };
+                if (myObjFattura.opzionalepa_daticontratto_codicecig != "") {
+                    _AltroDescr += '<br /><strong>Contratto CIG:</strong> ' + myObjFattura.opzionalepa_daticontratto_codicecig; //$("#txtDatiContratto_CodiceCIG").val();
+                };
+                if (myObjFattura.opzionalepa_daticontratto_codicecommessaconvenzione != "") {
+                    _AltroDescr += '<br /><strong>Contratto Codice Commessa/Convenzione:</strong> ' + myObjFattura.opzionalepa_daticontratto_codicecommessaconvenzione; //$("#txtDatiContratto_CodiceCommessaConvenzione").val();
+                };
+                if (myObjFattura.opzionalepa_datisal_riferimentofase != "") {
+                    _AltroDescr += '<br /><strong>Fae SAL:</strong> ' + myObjFattura.opzionalepa_datisal_riferimentofase; //$("#txtDatiSAL_RiferimentoFase").val();
+                };
+                if (myObjFattura.opzionalepa_riferimentonormativo != "") {
+                    _AltroDescr += '<br /><strong>Riferimento Normativo:</strong> ' + myObjFattura.opzionalepa_riferimentonormativo; // $("#txtVisualizzaRiferimentoNormativo").val();
+                };
+                if (myObjFattura.opzionalepa_riferimentoamministrazione != "") {
+                    _AltroDescr += '<br /><strong>Riferimento Amministrazione:</strong> ' + myObjFattura.opzionalepa_riferimentoamministrazione; //$("#txtVisualizzaRiferimentoAmministrazione").val();
+                };
+                if (parseFloat(myObjFattura.opzionalepa_importobollo) > 0) {
+                    _AltroDescr += '<br /><strong>Importo Bollo:</strong> ' + Number(myObjFattura.opzionalepa_importobollo).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    if (myObjFattura.opzionalepa_importobollo_addebitoalcliente) {
+                        _AltroDescr += ' a carico della PA cliente';
+                    };
+                };
+                if (myObjFattura.opzionalepa_visualizzacognomeprofessionista != "") {
+                    _AltroDescr += '<br /><strong>Visualizza Cognome Nome professionista:</strong> ' + myObjFattura.opzionalepa_visualizzacognomeprofessionista + ' ' + myObjFattura.opzionalepa_visualizzanomeprofessionista;
+                };
+                $('#RiepilogoDocumento_Altro').empty().append(_AltroDescr);
+
+                // fine POPOLO DETTAGLIO
+
+            } else {
+                alert("Login error; Message: " + errormessage + ";errorcode=" + errorcode);
+            };
+
+            AjaxMessageStop();
+
+        }).fail(function (xhdr, statusText, errorText) {
+
+            AjaxMessageStop();
+            //alert("err=" + errorText);
+            openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+        });
+
+
+    }
+
+    function PopolaCollections() {
+        // ajax in cascata, ogni fnc richiama la successiva
+        popolaTipoFatturaClienteCollection();
+    };
+    function popolaTipoFatturaClienteCollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.tipofatturaclientecollection.length > 0) {
+
+            // POPOLA IN CASCATA
+            popolaSezionaleCollection();
+
+        } else {
+
+            AjaxMessageStart();
+            
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoFatturaCliente/list', 
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    myStorage.tipofatturaclientecollection = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly
+                        };
+                        myStorage.tipofatturaclientecollection.push(myitem);
+                    });
+                    //DEFAULT
+                    var myitemDefault = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': '-- seleziona --'
+                    };
+                    myStorage.tipofatturaclientecollection.push(myitemDefault);
+
+                    // POPOLA IN CASCATA
+                    popolaSezionaleCollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+        };
+    };
+
+    function popolaSezionaleCollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.sezionalecollection.length > 0) {
+
+            // SE IL DDL E' GIA' POPOLATO NON LO RIPOPOLO
+            if ($("#ddlSezionale > option").length == 0) {
+                PopolaDdlSezionali(myStorage.sezionalecollection);
+            };
+
+            // POPOLA IN CASCATA
+            popolaTipoPagamentoCollection();
+
+        } else {
+
+            AjaxMessageStart();
+
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + "/TipoSezionale/list",
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+
+                    myStorage.sezionalecollection = [];
+                    $.each(collection, function (i, obj) {
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly
+                        };
+                        myStorage.sezionalecollection.push(myitem);
+                    });
+                    //ADD DEFAULT
+                    var myitemDefault = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': '-- TUTTI (CON E SENZA SEZIONALE) --'
+                    };
+                    myStorage.sezionalecollection.push(myitemDefault);
+
+                    PopolaDdlSezionali(myStorage.sezionalecollection);
+
+                    // POPOLA IN CASCATA
+                    popolaTipoPagamentoCollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+
+        };
+    };
+
+    function popolaTipoPagamentoCollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.tipopagamentocollection.length > 0) {
+
+            //POPOLA IN CASCATA
+            popolaCondizioniPagamentoCollection();
+
+        } else {
+
+            AjaxMessageStart();
+            
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoPagamento/list',
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    myStorage.tipopagamentocollection = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly,
+                            'descrizione': obj.descrizione,
+                            'codice': obj.codice
+                        };
+                        myStorage.tipopagamentocollection.push(myitem)
+                    });
+                    //Default item
+                    var myDefaultItem = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': "--seleziona--",
+                        'descrizione': "",
+                        'codice': ""
+                    };
+                    myStorage.tipopagamentocollection.push(myDefaultItem);
+
+                    //POPOLA IN CASCATA
+                    popolaCondizioniPagamentoCollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+        };
+    };
+
+
+    function popolaCondizioniPagamentoCollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.condizionipagamentocollection.length > 0) {
+
+            //POPOLA IN CASCATA
+            popolaCoordinateBancarieCollection();
+
+        } else {
+
+            AjaxMessageStart();
+
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoCondizionePagamento/list', 
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    myStorage.condizionipagamentocollection = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly,
+                            'descrizione': obj.descrizione,
+                            'codice': obj.codice,
+                            'isannullato': obj.isannullato
+                        };
+                        myStorage.condizionipagamentocollection.push(myitem)
+                    });
+                    //Default item
+                    var myDefaultItem = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': "--seleziona--",
+                        'descrizione': "",
+                        'codice': "",
+                        'isannullato': false
+                    };
+                    myStorage.condizionipagamentocollection.push(myDefaultItem);
+
+                    //POPOLA IN CASCATA
+                    popolaCoordinateBancarieCollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+        };
+    };
+
+    function popolaCoordinateBancarieCollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.coordinatebancariecollection.length > 0) {
+
+            // POPOLA IN CASCATA
+            popolaUdMCollection();
+
+        } else {
+
+            AjaxMessageStart();
+            
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoCoordinateBancarie/list',
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    myStorage.coordinatebancariecollection = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly,
+                            'descrizione': obj.descrizione,
+                            'iban': obj.iban,
+                            'isannullato': obj.isannullato,
+                            'intestazionecc': obj.intestazionecc
+                        };
+                        myStorage.coordinatebancariecollection.push(myitem);
+                    });
+                    //DEFAULT
+                    var myitemDefault = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': '-- seleziona --',
+                        'descrizione': '-- seleziona --',
+                        'iban': '',
+                        'isannullato': false,
+                        'intestazionecc': ''
+                    };
+                    myStorage.coordinatebancariecollection.push(myitemDefault);
+
+                    // POPOLA IN CASCATA
+                    popolaUdMCollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+        };
+    };
+
+    function popolaUdMCollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.udmcollection.length > 0) {
+
+            // POPOLA IN CASCATA
+            popolaAliquotaIVACollection();
+
+        } else {
+
+            AjaxMessageStart();
+
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoUnitaDiMisura/list', 
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    myStorage.udmcollection = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly,
+                            'descrizione': obj.descrizione,
+                            'isannullato': obj.isannullato
+                        };
+                        //UdMCollection.push(myitem);
+                        myStorage.udmcollection.push(myitem)
+                    });
+
+                    //POPOLA IN CASCATA
+                    popolaAliquotaIVACollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+
+        };
+    };
+
+    //var AliquotaIVACollection = [];
+    function popolaAliquotaIVACollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.aliquotaivacollection.length > 0) {
+
+            //POPOLA IN CASCATA
+            popolaEsigibilitaIVACollection();
+
+            //AjaxMessageStop();
+
+        } else {
+
+            AjaxMessageStart();
+
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoAliquotaIVA/list',
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    myStorage.aliquotaivacollection = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly,
+                            'descrizione': obj.descrizione,
+                            'isannullato': obj.isannullato,
+                            'percaliquotaiva': obj.percaliquotaiva,
+                            'isdefault': obj.isdefault,
+                            'codicenatura': obj.codicenatura,
+                            'codiceiva': obj.codiceiva
+                        };
+                        myStorage.aliquotaivacollection.push(myitem)
+                    });
+
+                    //Default
+                    var myitemDefault = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': '-- seleziona --',
+                        'descrizione': '-- seleziona --',
+                        'isannullato': false,
+                        'percaliquotaiva': 0,
+                        'isdefault': false,
+                        'codicenatura': '',
+                        'codiceiva': ''
+                    };
+                    myStorage.aliquotaivacollection.push(myitemDefault);
+
+                    //POPOLA IN CASCATA
+                    popolaEsigibilitaIVACollection();
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+        };
+    };
+
+    function popolaEsigibilitaIVACollection() {
+
+        // COLLECTION GIA' POPOLATA?
+        if (myStorage.tipoesigibilitaivacollection.length > 0) {
+
+            // POPOLA IN CASCATA
+            // ULTIMO
+            popolaList(CurrentPageIndex);
+
+        } else {
+
+            AjaxMessageStart();
+
+            $.ajax({
+                method: 'GET',
+                url: myStorage.ApiUrl + '/TipoEsigibilitaIVA/list',
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (resp, statusText, xhdr) {
+
+                var myResponse = $.parseJSON(resp);
+                var success = myResponse.success; // = true;
+                var errormessage = myResponse.errormessage; // = "OK";
+                var errorcode = myResponse.errorcode; // = 0;
+                var pagecount = myResponse.pagecount;
+
+                if (success == true) {
+
+                    var collection = $.parseJSON(myResponse.obj);
+                    var _collectionTemp = [];
+                    $.each(collection, function (i, obj) {
+
+                        var myitem = {
+                            'uid': obj.uid,
+                            'descrizionereadonly': obj.descrizionereadonly,
+                            'descrizione': obj.descrizione,
+                            'codice': obj.codice
+                        };
+                        myStorage.tipoesigibilitaivacollection.push(myitem);
+                    });
+                    //DEFAULT
+                    var myitemDefault = {
+                        'uid': EmptyUid,
+                        'descrizionereadonly': '-- seleziona --',
+                        'descrizione': '-- seleziona --',
+                        'codice': ''
+                    };
+                    myStorage.tipoesigibilitaivacollection.push(myitemDefault);
+
+                    // POPOLA IN CASCATA
+                    // ULTIMO
+                    popolaList(CurrentPageIndex);
+
+                } else {
+                    alert("error; Message: " + errormessage + ";errorcode=" + errorcode);
+                };
+
+                //AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                AjaxMessageStop();
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+            });
+        };
+    };
+
+    function doEditFn() {
+        //location.search = '/index.htm?page=FatturaClienteCrea&uid=' + myObjFattura.uid;
+        setUrlParam('FatturaClienteCrea', 'uid', myObjFattura.uid)
+    };
+
+    function PopolaDdlSezionali(collection) {
+        $("#ddlSezionale").empty();
+        $.each(collection, function (i, obj) {
+            if (obj.descrizionereadonly == "") {
+                obj.descrizionereadonly = "SENZA SEZIONALE";
+            };
+            $("#ddlSezionale").append($("<option />").val(obj.uid).text(obj.descrizionereadonly));
+        });
+        // sezionale VUOTO: uid=00000000-0000-0000-0000-000000000001 ARBITRARIO (é VUOTO MA E' UN SEZIONALE)
+        // TUTTI i sezionali:  uid=00000000-0000-0000-0000-000000000000 (Empty Guid)
+        $('#ddlSezionale').val(EmptyUid);
+    };
+
+
+    $('#btnFind').click(function () {
+        var CurrentPageIndex = 0;
+        popolaList(CurrentPageIndex);
+    });
+
+
+    /* *******************************
+        ARCHIVIO CLIENTI
+    ********************************** */
+    $("#btnOpenModalArchivioClienti").click(function () {
+        $("#txtSearchArchivioClienti").val("");
+        var strSearch = "";
+        CurrentPageIndexOfArchivioClienti = 0;
+        popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch)
+        $('#myModalArchivioClienti').modal("show");
+    });
+    $("#btnStartSearchArchivioClienti").click(function () {
+        var strSearch = $("#txtSearchArchivioClienti").val();
+        CurrentPageIndexOfArchivioClienti = 0;
+        popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch);
+    });
+
+    var CurrentPageIndexOfArchivioClienti = 0; //zero based
+    var PageCountOfArchivioClienti = 0;
+    function popolaTblArchivioClienti(CurrentPageIndex, strSearch) {
+
+        CurrentPageIndexOfArchivioClienti = CurrentPageIndex;
+
+        AjaxMessageStart();
+
+        $.ajax({
+            method: 'GET',
+            url: myStorage.ApiUrl + '/Soggetto/list/CurrentPageIndex/' + CurrentPageIndex + '/strSearch/' + strSearch,
+            beforeSend: function (xhdr) {
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); //$("#token").val());
+            }
+        }).done(function (resp, statusText, xhdr) {
+
+            var myResponse = $.parseJSON(resp);
+            var success = myResponse.success; // = true;
+            var errormessage = myResponse.errormessage; // = "OK";
+            var errorcode = myResponse.errorcode; // = 0;
+            var pagecount = myResponse.pagecount;
+
+            if (success == true) {
+
+                var collection = $.parseJSON(myResponse.obj);
+                $("#tblArchivioClienti tbody").empty();
+
+                var trDefault = '<tr>'
+                    + '<td style="width:95%;" class="descrCliente">-- TUTTI I CLIENTI --</td>'
+                    + '<td><button type="button" class="btn btn-primary btn-sm selezioneArchivioClienti" data-uid="' + EmptyUid + '">seleziona</button></td>'
+                    + '</tr>';
+                $("#tblArchivioClienti tbody").append(trDefault);
+
+                $.each(collection, function (i, obj) {
+
+                    var tr = '<tr>'
+                        + '<td style="width:95%;" class="descrCliente">' + obj.descrizionereadonly + '</td>'
+                        + '<td><button type="button" class="btn btn-primary btn-sm selezioneArchivioClienti" data-uid="' + obj.uid + '">seleziona</button></td>'
+                        + '</tr>';
+                    $("#tblArchivioClienti tbody").append(tr);
+
+                });
+
+                // PAGINAZIONE: STATO DEI BUTTONS
+                PageCountOfArchivioClienti = pagecount;
+                $("#btnPagingGoToFirst_ArchivioClienti").parent().removeClass("disabled");
+                $("#btnPagingGoBack_ArchivioClienti").parent().removeClass("disabled");
+                $("#btnPagingGoForward_ArchivioClienti").parent().removeClass("disabled");
+                $("#btnPagingGoToLast_ArchivioClienti").parent().removeClass("disabled");
+                if (CurrentPageIndexOfArchivioClienti == 0) {
+                    $("#btnPagingGoToFirst_ArchivioClienti").parent().addClass("disabled");
+                    $("#btnPagingGoBack_ArchivioClienti").parent().addClass("disabled");
+                }
+                if (CurrentPageIndexOfArchivioClienti == (pagecount - 1)) {
+                    $("#btnPagingGoForward_ArchivioClienti").parent().addClass("disabled");
+                    $("#btnPagingGoToLast_ArchivioClienti").parent().addClass("disabled");
+                }
+
+                $("#txtCurrentPageIndex_ArchivioClienti").text(CurrentPageIndexOfArchivioClienti + 1);
+                $("#txtPageCount_ArchivioClienti").text(PageCountOfArchivioClienti);
+
+            } else {
+                alert("Login error; Message: " + errormessage + ";errorcode=" + errorcode);
+            };
+
+            AjaxMessageStop();
+
+        }).fail(function (xhdr, statusText, errorText) {
+
+            AjaxMessageStop();
+            alert("err=" + errorText);
+
+        });
+    }
+
+    $("#btnPagingGoToFirst_ArchivioClienti").click(function () {
+        CurrentPageIndexOfArchivioClienti = 0;
+        var strSearch = $("#txtSearchArchivioClienti").val();
+        popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch)
+    });
+    $("#btnPagingGoBack_ArchivioClienti").click(function () {
+        CurrentPageIndexOfArchivioClienti -= 1;
+        var strSearch = $("#txtSearchArchivioClienti").val();
+        popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch)
+    });
+    $("#btnPagingGoForward_ArchivioClienti").click(function () {
+        CurrentPageIndexOfArchivioClienti += 1;
+        if (PageCountOfArchivioClienti > 1) {
+            if (CurrentPageIndexOfArchivioClienti >= (PageCountOfArchivioClienti - 1)) {
+                CurrentPageIndexOfArchivioClienti = PageCountOfArchivioClienti - 1;
+            }
+        }
+        var strSearch = $("#txtSearchArchivioClienti").val();
+        popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch)
+    });
+    $("#btnPagingGoToLast_ArchivioClienti").click(function () {
+        CurrentPageIndexOfArchivioClienti = PageCountOfArchivioClienti - 1;
+        var strSearch = $("#txtSearchArchivioClienti").val();
+        popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch)
+    });
+
+
+    $("#tblArchivioClienti").on('click', '.selezioneArchivioClienti', function () {
+        var uid = $(this).data('uid');
+        var td = $(this).parent();
+        var tr = $(td).parent();
+        var descrCliente = $(tr).find('.descrCliente').first().html();
+        $('#txtDescrSoggettoSearch').val(descrCliente);
+        $('#txtUidSoggettoSearch').val(uid);
+        //CHIUDE LE MODALI
+        $('#myModalArchivioClienti').modal('hide');
+    });
+
+    function doDownloadXmlFn() {
+        //myObjFattura.uid
+      
+        //$.ajax({
+        //    url: "http://cors.jejaju.com/Snickerdoodles.pdf",
+        //    type: "GET",
+        //    dataType: 'binary',
+        //    success: function (result) {
+        //        var url = URL.createObjectURL(result);
+        //        var $a = $('<a />', {
+        //            'href': url,
+        //            'download': 'document.pdf',
+        //            'text': "click"
+        //        }).hide().appendTo("body")[0].click();
+        //        setTimeout(function () {
+        //            URL.revokeObjectURL(url);
+        //        }, 10000);
+        //    }
+        //});
+
+            AjaxMessageStart();
+
+            $.ajax({
+                dataType: 'binary',
+                method: 'GET',
+                url: myStorage.ApiUrl + '/FatturaCliente/getXmlFatturaElettronica/' + myObjFattura.uid,
+                beforeSend: function (xhdr) {
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
+                }
+            }).done(function (result) {
+
+                var url = URL.createObjectURL(result);
+                var $a = $('<a />', {
+                    'href': url,
+                    'download': 'document.pdf',
+                    'text': "click"
+                }).hide().appendTo("body")[0].click();
+                setTimeout(function () {
+                    URL.revokeObjectURL(url);
+                }, 10000);
+
+                AjaxMessageStop();
+
+            }).fail(function (xhdr, statusText, errorText) {
+
+                //alert("err=" + errorText);
+                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
+
+                });
+
+
+    }
+
+</script>

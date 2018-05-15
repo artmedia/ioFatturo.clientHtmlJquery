@@ -1,0 +1,88 @@
+﻿<div id="page-content"></div>
+
+<script type="text/x-tmpl" id="page-template">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <h2>Assistenza Commerciale</h2>
+                <hr />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh30"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh30"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-8 offset-sm-4">
+                <h3>{%=o.page_assistenzacommerciale.ragioneSociale%}</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh20"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-8 offset-sm-4">
+                <p>
+                    <strong><i class="fa fa-map-marker"></i> Indirizzo:</strong> {%=o.page_assistenzacommerciale.indirizzo%} - {%=o.page_assistenzacommerciale.cap%} {%=o.page_assistenzacommerciale.comune%}
+                </p>
+                <p>
+                    <strong><i class="fa fa-phone"></i> Telefono:</strong> {%=o.page_assistenzacommerciale.telefono%}
+                </p>
+                <p>
+                    <strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:{%=o.page_assistenzacommerciale.email%}">{%=o.page_assistenzacommerciale.email%}</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh30"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh30"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh30"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="spacerh30"></div>
+            </div>
+        </div>
+
+    </div>
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        PageLoad();
+    });
+    function PageLoad() {
+        //POPOLA IL TEMPLATE CON I DATI PRESI DAL FILE JSON
+        $('#page-content').html(tmpl("page-template", myStorage.SiteConfig));
+    };
+</script>

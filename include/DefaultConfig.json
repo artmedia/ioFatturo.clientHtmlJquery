@@ -1,0 +1,89 @@
+﻿{
+  "APIurl": "https://api.iofatturo.it",
+  "nomeSito": "[nome sito]",
+  "descrizioneSito": "[nome sito: programma di fatturazione elettronica]",
+  "copyright": "[copyright sito]",
+  "titolareSito": {
+    "ragioneSociale": "[ragione sociale]",
+    "piva": "[p.iva ditta titolare]",
+    "cf": "[cod.fisc. ditta titolare]",
+    "indirizzo": "[indirizzo ditta titolare]",
+    "cap": "[cap ditta titolare]",
+    "comune": "[comune ditta titolare]",
+    "email": "[email ditta titolare]",
+    "pec": "[pec ditta titolare]",
+    "numeroIscrizioneREA": "[rea ditta titolare]",
+    "capitaleSociale": "[cap.soc. ditta titolare]",
+    "societaDiCapitale": false
+  },
+  "page_home": {
+    "testoH1": "Software Gestionale di Fatturazione Elettronica",
+    "testoH2": "per piccole imprese, artigiani e professionisti",
+    "testoH3": "intuitivo, procedure guidate per tutti i passaggi",
+
+    "visualizza_slideshow": true,
+    "slideshow_urlimmagine1": "https://www.iofatturo.it/images/imm1920x920slide5.jpg",
+    "slideshow_urlimmagine2": "https://www.iofatturo.it/images/imm1920x920slide1.jpg",
+    "slideshow_urlimmagine3": "https://www.iofatturo.it/images/imm1920x920slide4.jpg",
+
+    "visualizza_3_boxes": true,
+    "box1_urlimmagine": "images/iconCircular1.jpg",
+    "box1_titolo": "Titolo 1 testo testo",
+    "box1_testo": "Some quick example text to build on the card title and make up the bulk of the card's content",
+    "box2_urlimmagine": "images/iconCircular2.jpg",
+    "box2_titolo": "Titolo 2 testo testo",
+    "box2_testo": "Some quick example text to build on the card title and make up the bulk of the card's content",
+    "box3_urlimmagine": "images/iconCircular3.jpg",
+    "box3_titolo": "Titolo 3 testo testo",
+    "box3_testo": "Some quick example text to build on the card title and make up the bulk of the card's content",
+
+    "visualizza_articolo1": true,
+    "articolo1_urlimmagine": "images/article1.jpg",
+    "articolo1_titolo": "Titolo articolo 1",
+    "articolo1_testo": "Some quick example text to build on the card title and make up the bulk of the card's content <br /><strong>Some quick example</strong> text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content",
+
+    "visualizza_articolo2": true,
+    "articolo2_urlimmagine": "images/article2.jpg",
+    "articolo2_titolo": "Titolo articolo 2",
+    "articolo2_testo": "Some quick example text to build on the card title and make up the bulk of the card's content <br /><strong>Some quick example</strong> text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content",
+
+    "visualizza_articolo3": true,
+    "articolo3_urlimmagine": "images/article3.jpg",
+    "articolo3_titolo": "Titolo articolo 3",
+    "articolo3_testo": "Some quick <strong>example</strong> text to build on the card title and make up the bulk of the card's content <br /><strong>Some quick example</strong> text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content",
+
+    "visualizza_articolo4": true,
+    "articolo4_urlimmagine": "images/article4.jpg",
+    "articolo4_titolo": "Titolo articolo 4",
+    "articolo4_testo": "Some quick example text to build on the card title and make up the bulk of the card's content <br /><strong>Some quick example</strong> text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content<br />Some quick example text to build on the card title and make up the bulk of the card's content <br /><strong>Some quick example</strong> text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content"
+  },
+  "page_assistenzatecnica": {
+  },
+  "page_assistenzacommerciale": {
+    "ragioneSociale": "Azienda di Luca Srl",
+    "indirizzo": "via roma 123",
+    "cap": "12345",
+    "comune": "Torino",
+    "email": "commerciale@miaazienda.it",
+    "telefono": "012.123.456.789"
+  },
+  "page_contatti": {
+    "ragioneSociale": "[ragione sociale contatti]",
+    "indirizzo": "[indirizzo contatti]",
+    "cap": "[cap contatti]",
+    "comune": "[comune contatti]",
+    "email": "[email contatti]",
+    "telefono": "[telefono contatti]",
+    "orariodiapertura_lun": "[orariodiapertura_lun contatti]",
+    "orariodiapertura_mar": "[orariodiapertura_mar contatti]",
+    "orariodiapertura_mer": "[orariodiapertura_mer contatti]",
+    "orariodiapertura_gio": "[orariodiapertura_gio contatti]",
+    "orariodiapertura_ven": "[orariodiapertura_ven contatti]",
+    "orariodiapertura_sab": "[orariodiapertura_sab contatti]",
+    "orariodiapertura_dom": "[orariodiapertura_dom contatti]"
+  },
+  "page_privacy": {
+    "testo": ""
+  }
+
+} 
