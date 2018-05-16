@@ -52,6 +52,10 @@ Per tutte le altre pagine i contenuti sono personalizzabili modificando il file 
 Un esempio di come possono essere personalizzate:   
 https://www.nonSoloFatture.it
 
+Homepage parametrizzabile | archivio fatture elettroniche
+------------ | -------------
+![Schermata 3](https://www.iofatturo.it/portals/17/images/Github_Schermata3.jpg) | ![Schermata 4](https://www.iofatturo.it/portals/17/images/Github_Schermata4.jpg)
+
 ## Funzionalità
 
 - creazione guidata della Fattura Elettronica
