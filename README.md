@@ -6,6 +6,10 @@
 
 Questo progetto è un **client html rimarchiabile** del famoso gestionale ioFatturo.it che offre, tra gli altri, i servizi per la gestione completa della **Fatturazione Elettronica**.
 
+schermata | procedura guidata
+------------ | -------------
+![Schermata 1](https://www.iofatturo.it/portals/17/images/Github_Schermata1.jpg) | ![Schermata 2](https://www.iofatturo.it/portals/17/images/Github_Schermata2.jpg)
+
 #### Rimarchiabile
 
 Il client puo' essere rimarchiato e personalizzato con la **propria ragione sociale**, il proprio logo e i propri riferimenti in modo che una software house/società di servizi possa offrire ai propri clienti il servizio di Fatturazione Elettronica (e prossimamente anche altri come fatture passive, magazzino, ddt, ecc..) mantenendone la gestione e vendendo il servizio con il proprio listino.    
