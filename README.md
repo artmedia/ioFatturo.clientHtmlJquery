@@ -81,7 +81,7 @@ Homepage parametrizzabile | archivio fatture elettroniche
 
 ## Contatti
 
-gestionale in cloud ioFatturo.it
+gestionale in cloud ioFatturo.it  
 [www.ioFatturo.it](https://www.ioFatturo.it)  
 
 powered by Artmedia sas  
