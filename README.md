@@ -2,19 +2,20 @@
 
 ## Cos'è
 
-### Client html con API Rest
+#### Client html con API Rest
 
 Questo progetto è un **client html rimarchiabile** del famoso gestionale ioFatturo.it che offre, tra gli altri, i servizi per la gestione completa della **Fatturazione Elettronica**.
 
-### Rimarchiabile
+#### Rimarchiabile
 
 Il client puo' essere rimarchiato e personalizzato con la **propria ragione sociale**, il proprio logo e i propri riferimenti in modo che una software house/società di servizi possa offrire ai propri clienti il servizio di Fatturazione Elettronica (e prossimamente anche altri come fatture passive, magazzino, ddt, ecc..) mantenendone la gestione e vendendo il servizio con il proprio listino.    
 Questo client html non richiede installazione, se non la copia dei file su uno spazio di web hosting, non richiede manutenzione perchè tutte le funzioni sono richiamate attraverso API del gestionale in cloud ioFatturo.it.
 Le maschere di questo progetto hanno il solo compito di presentare e organizzare i dati scaricati attraverso API Rest e di ripassarli sempre attraverso API al motore del gestionale ioFatturo dove vengono salvati e dove vengono eseguite le funzionalità più "pesanti" come la generazione del documento xml ed eventualmente l'invio dal SDI.
 
-### Fatturazione Elettronica
+#### Fatturazione Elettronica
 
-Tutte le funzionalità di creazione/gestione della Fattura Elettronica sono richiamate attraverso le **API Rest **che si interfacciano al motore del gestionale ioFatturo.it, viene anche gestito il servizio firma elettronica del documento e di archiviazione digitale sostitutiva; questi ultimi vengono offerto attraverso l'interfacciamento ai server di Aruba in modo del tutto trasparente.
+Tutte le funzionalità di creazione/gestione della Fattura Elettronica sono richiamate attraverso le **API Rest** che si interfacciano al motore del gestionale ioFatturo.it, viene anche gestito il servizio firma elettronica del documento e di archiviazione digitale sostitutiva; questi ultimi vengono offerto attraverso l'interfacciamento ai server di Aruba in modo del tutto trasparente.
+
 
 
 ## A chi si rivolge
@@ -23,7 +24,7 @@ Questo progetto si rivolge a società di servizi, software house, web agency, we
 
 ## Finalità del progetto
 
-Agevolare la gestione della Fatturazione Elettronica B2G (PA), B2B e B2C alle microimprese, artigiani, professionisti.
+Agevolare la gestione della Fatturazione Elettronica B2G (PA), B2B e B2C alle microimprese, artigiani, professionisti.  
 Come? Come attraverso **maschere con passaggi guidati** e funzionalità gestire in cloud.
 
 ## Caratteristiche tecniche
@@ -43,8 +44,8 @@ Pertanto si ha a disposizione un mini CMS composto da alcune pagine fisse:
   - Consultazione Archivio Fatture
 
 Le pagine al di sotto della voce Operazioni non possono essere personalizzate perchè si connettono alle API del gestionale ioFatturo.it.
-Per tutte le altre pagine i contenuti sono personalizzabili modificando il file SiteConfig.json
-Un esempio di come possono essere personalizzate: 
+Per tutte le altre pagine i contenuti sono personalizzabili modificando il file SiteConfig.json  
+Un esempio di come possono essere personalizzate:   
 https://www.nonSoloFatture.it
 
 ## Funzionalità
@@ -59,7 +60,7 @@ https://www.nonSoloFatture.it
 
 ## Requisiti
 
-- un proprio spazio Web in HTTPS, es. https://www.miosito.it
+- un proprio spazio Web in HTTPS  (es. https://www.miosito.it)
 - un account su [ioFatturo.it](https://www.ioFatturo.it)  
 
 ## Come iniziare
@@ -72,6 +73,7 @@ https://www.nonSoloFatture.it
 
 ## Contatti
 
+gestionale in cloud ioFatturo.it
 [www.ioFatturo.it](https://www.ioFatturo.it)  
 
 powered by Artmedia sas  
