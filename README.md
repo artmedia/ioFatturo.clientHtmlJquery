@@ -1,4 +1,5 @@
-# Client rimarchiabile del gestionale ioFatturo.it per Fatturazione Elettronica
+# Client rimarchiabile del gestionale ioFatturo.it  
+per Fatturazione Elettronica
 
 ## Cos'è
 
