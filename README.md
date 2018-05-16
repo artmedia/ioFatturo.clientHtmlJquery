@@ -1,4 +1,4 @@
-# Client rimarchiabile del gestionale ioFatturo.it per Fatturazione Elettronica
+# Client rimarchiabile del gestionale ioFatturo.it  per Fatturazione Elettronica
 
 ## Cos'è
 
@@ -6,25 +6,26 @@
 
 Questo progetto è un **client html rimarchiabile** del famoso gestionale ioFatturo.it che offre, tra gli altri, i servizi per la gestione completa della **Fatturazione Elettronica**.
 
-schermata | procedura guidata
+procedura guidata inizio | passaggi successivi
 ------------ | -------------
 ![Schermata 1](https://www.iofatturo.it/portals/17/images/Github_Schermata1.jpg) | ![Schermata 2](https://www.iofatturo.it/portals/17/images/Github_Schermata2.jpg)
 
+
 #### Rimarchiabile
 
-Il client puo' essere rimarchiato e personalizzato con la **propria ragione sociale**, il proprio logo e i propri riferimenti in modo che una software house/società di servizi possa offrire ai propri clienti il servizio di Fatturazione Elettronica (e prossimamente anche altri come fatture passive, magazzino, ddt, ecc..) mantenendone la gestione e vendendo il servizio con il proprio listino.    
+Il client puo' essere rimarchiato e personalizzato con la **propria ragione sociale**, il proprio logo e i propri riferimenti in modo che una software house/società di servizi possa offrire ai propri clienti il servizio di Fatturazione Elettronica (e prossimamente anche altri come fatture passive, magazzino, ddt, ecc..) mantenendone la gestione e vendendo il servizio con il proprio listino.
+La software house/società di servizi rimane l'**unico interlocutore** con il proprio cliente.   
 Questo client html non richiede installazione, se non la copia dei file su uno spazio di web hosting, non richiede manutenzione perchè tutte le funzioni sono richiamate attraverso API del gestionale in cloud ioFatturo.it.
 Le maschere di questo progetto hanno il solo compito di presentare e organizzare i dati scaricati attraverso API Rest e di ripassarli sempre attraverso API al motore del gestionale ioFatturo dove vengono salvati e dove vengono eseguite le funzionalità più "pesanti" come la generazione del documento xml ed eventualmente l'invio dal SDI.
 
 #### Fatturazione Elettronica
 
-Tutte le funzionalità di creazione/gestione della Fattura Elettronica sono richiamate attraverso le **API Rest** che si interfacciano al motore del gestionale ioFatturo.it, viene anche gestito il servizio firma elettronica del documento e di archiviazione digitale sostitutiva; questi ultimi vengono offerto attraverso l'interfacciamento ai server di Aruba in modo del tutto trasparente.
-
+Tutte le funzionalità di creazione/gestione della Fattura Elettronica sono richiamate attraverso le **API Rest** che si interfacciano al motore del gestionale ioFatturo.it, viene anche gestito il servizio di firma elettronica del documento e di archiviazione digitale sostitutiva; questi ultimi vengono offerti attraverso l'interfacciamento ai server di Aruba in modo del tutto trasparente.
 
 
 ## A chi si rivolge
 
-Questo progetto si rivolge a società di servizi, software house, web agency, web developer che avendo un parco clienti vogliono offrire servizi gestionali, in particolar modo la Fatturazione Elettronica 
+Questo progetto si rivolge a società di servizi, software house, web agency, web developer che avendo un parco clienti vogliono offrire servizi gestionali, in particolar modo la Fatturazione Elettronica. 
 
 ## Finalità del progetto
 
@@ -34,7 +35,7 @@ Come? Come attraverso **maschere con passaggi guidati** e funzionalità gestire 
 ## Caratteristiche tecniche
 
 Tutto il progetto è costituito da semplici pagine html5 con jQuery e Bootstrap 4.
-Pertanto l'Hosting di queste pagine html non richiede scripting lato server (php, java, asp.net), nè accesso a database.
+Pertanto l'Hosting di queste pagine html non richiede scripting lato server (niente php, java, asp.net), nè accesso a database.
 Nessun dato viene salvato localmente tranne le informazioni necessarie per l'autenticazione alle API e alcune collection di dati finalizzate a migliorare l'interazione con l'utente (queste informazioni vengono salvate in LocalStorage del browser).
 
 Pertanto si ha a disposizione un mini CMS composto da alcune pagine fisse:
