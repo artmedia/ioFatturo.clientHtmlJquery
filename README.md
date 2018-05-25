@@ -71,8 +71,8 @@ Homepage parametrizzabile | archivio fatture elettroniche
 
 ioFatturo mette a disposizione un set di API per svolgere le principali funzioni gestionali di cui hanno bisogno le microimprese/artigiani/professionisti.  
 Automatizzare i processi attraversop queste funzioni ora è possibile:  
-esempio: caricare gli ordini e gestirli in base allo stato  
-oppure convertire un ordine in fattura automaticamente, ecc
+esempio: caricare gli ordini e gestirli in base allo stato oppure convertire un ordine in fattura automaticamente, ecc  
+[https://api.ioFatturo.it](https://api.iofatturo.it)
 
 ## Requisiti
 
@@ -91,6 +91,9 @@ oppure convertire un ordine in fattura automaticamente, ecc
 
 ioFatturo.it - gestionale in cloud  
 [www.ioFatturo.it](https://www.ioFatturo.it)  
+
+progettista:  
+Luca Bongioanni  
 
 powered by Artmedia sas  
 [www.Artmedia.it](https://www.Artmedia.it)  
