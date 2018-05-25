@@ -76,7 +76,7 @@ esempio: caricare gli ordini e gestirli in base allo stato oppure convertire un 
 
 ## Requisiti
 
-- un proprio spazio Web in HTTPS  (es. https://www.miosito.it)
+- un proprio spazio Web in HTTPS
 - un account su [ioFatturo.it](https://www.ioFatturo.it)  
 
 ## Come iniziare
@@ -85,7 +85,7 @@ esempio: caricare gli ordini e gestirli in base allo stato oppure convertire un 
 2. Rinomina il file SiteConfig.json.txt in SiteConfig.json 
 3. Personalizza il file **SiteConfig.json** sostituendo i dati preimpostati con quelli della tua ditta
 4. Pubblica il tutto sul tuo spazio Web (il sito deve essere HTTPS)
-5. Imposta il sito in modo che parta con index.html
+5. Imposta il sito in modo che si avvii con index.html
 
 ## Contatti
 
