@@ -67,6 +67,13 @@ Homepage parametrizzabile | archivio fatture elettroniche
 - firma elettronica del documento XML
 - invio al Sistema Di Interscambio (SDI) che lo recapiterà al proprio cliente
 
+## API gestionali (cloud funzionale)
+
+ioFatturo mette a disposizione un set di API per svolgere le principali funzioni gestionali di cui hanno bisogno le microimprese/artigiani/professionisti.  
+Automatizzare i processi attraversop queste funzioni ora è possibile:  
+esempio: caricare gli ordini e gestirli in base allo stato  
+oppure convertire un ordine in fattura automaticamente, ecc
+
 ## Requisiti
 
 - un proprio spazio Web in HTTPS  (es. https://www.miosito.it)
@@ -82,7 +89,7 @@ Homepage parametrizzabile | archivio fatture elettroniche
 
 ## Contatti
 
-gestionale in cloud ioFatturo.it  
+ioFatturo.it - gestionale in cloud  
 [www.ioFatturo.it](https://www.ioFatturo.it)  
 
 powered by Artmedia sas  
