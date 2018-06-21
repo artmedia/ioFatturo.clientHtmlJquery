@@ -1,4 +1,4 @@
-# Client rimarchiabile del gestionale ioFatturo.it  per Fatturazione Elettronica
+# Client html rimarchiabile che utilizza le API rest  del gestionale ioFatturo.it per la Fatturazione Elettronica
 
 ## Cos'è
 
