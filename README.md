@@ -2,9 +2,9 @@
 
 ## Cos'è
 
-#### Client html con API Rest
+#### Client html delle API Rest di ioFatturo.it
 
-Questo progetto è un **client html rimarchiabile** del famoso gestionale ioFatturo.it che offre, tra gli altri, i servizi per la gestione completa della **Fatturazione Elettronica**.
+Questo progetto è un **client html rimarchiabile** del che utilizza le API del famoso gestionale ioFatturo.it; tra gli altri servizi c'è anche per la gestione completa della **Fatturazione Elettronica**.
 
 procedura guidata inizio | passaggi successivi
 ------------ | -------------
@@ -20,7 +20,7 @@ Le maschere di questo progetto hanno il solo compito di presentare e organizzare
 
 #### Fatturazione Elettronica
 
-Tutte le funzionalità di creazione/gestione della Fattura Elettronica sono richiamate attraverso le **API Rest** che si interfacciano al motore del gestionale ioFatturo.it, viene anche gestito il servizio di firma elettronica del documento e di archiviazione digitale sostitutiva; questi ultimi vengono offerti attraverso l'interfacciamento ai server di Aruba in modo del tutto trasparente.
+Tutte le funzionalità di creazione/gestione/invio della Fattura Elettronica sono richiamate attraverso le **API Rest** che si interfacciano al motore del gestionale ioFatturo.it, viene anche gestito il servizio di firma elettronica del documento, l'invio al Sistema Di Interscambio e di archiviazione digitale sostitutiva; questi ultimi vengono offerti attraverso l'interfacciamento ai server di Aruba in modo del tutto trasparente.
 
 
 ## A chi si rivolge
