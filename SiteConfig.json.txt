@@ -21,7 +21,7 @@
     "testoH2": "per piccole imprese, artigiani e professionisti",
     "testoH3": "intuitivo, procedure guidate per tutti i passaggi",
 
-    "visualizza_slideshow": true,
+    "visualizza_slideshow": false,
     "slideshow_urlimmagine1": "https://www.iofatturo.it/images/imm1920x920slide5.jpg",
     "slideshow_urlimmagine2": "https://www.iofatturo.it/images/imm1920x920slide1.jpg",
     "slideshow_urlimmagine3": "https://www.iofatturo.it/images/imm1920x920slide4.jpg",
