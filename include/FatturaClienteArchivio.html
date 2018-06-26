@@ -1,4 +1,9 @@
-﻿<div class="container">
+﻿<style type="text/css">
+    .modal-lg {
+        max-width: 80% !important;
+    }
+</style>
+<div class="container">
 
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -239,7 +244,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <p>Visualizza il documento</p>
-                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaAnteprimaHtmlFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +288,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <p>Invia il documento a Cliente (tramite SDI)</p>
-                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invio a Cliente</button>
+                                        <button type="button" class="btn btn-success btn-lg btn-block" onclick="openModalInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invio a Cliente</button>
                                     </div>
                                 </div>
                             </div>
@@ -339,7 +344,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="d-none d-sm-block">
-                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaAnteprimaHtmlFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
                                 </div>
                             </div>
 
@@ -422,7 +427,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-6">
                                 <div class="d-none d-sm-block">
-                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invio a Cliente</button>
+                                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="openModalInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invio a Cliente</button>
                                 </div>
                             </div>
 
@@ -734,6 +739,109 @@
     </div>
 </div>
 
+
+<!-- Modal Anteprima Documento Html -->
+<div class="modal fade" id="myModalVisualizzaAnteprimaHtml" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Visualizza Documento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- ######## inizio ######## -->
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div id="myBoxVisualizzaAnteprimaHtml"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ######## fine  ######## -->
+            </div>
+
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Invio a SDI -->
+<div class="modal fade" id="myModalInvioSDI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Invia il Documento al Cliente (attraverso SDI)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- ######## inizio ######## -->
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <h4>Invia il Documento al Cliente</h4>
+                            <div>
+                                <p>Il Documento verrà inviato al Sistema Di Interscambio che provvederà ad inoltrarlo al tuo cliente sulla sua casella PEC oppure attraverso il canale che questi ha indicato per la ricezione delle fatture elettroniche.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh20"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div id="boxMessageInvioSDI"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh10"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invia documento a Cliente</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh20"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ######## fine  ######## -->
+            </div>
+
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/FatturaCliCommon.js"></script>
 <script type="text/javascript">
 
     var myObjFattura = new Entities.FatturaCli;
@@ -895,6 +1003,7 @@
                 xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); //$("#token").val());
             }
         }).done(function (resp, statusText, xhdr) {
+
             var myResponse = $.parseJSON(resp);
             var success = myResponse.success; // = true;
             var errormessage = myResponse.errormessage; // = "OK";
@@ -913,7 +1022,7 @@
 
                 });
                 if (collection.length == 0) {
-                    var tr = '<div>nessun elemento trovato</li>';
+                    var tr = '<div>nessun elemento trovato</div>';
                     $("#myList").append(tr);
                 };
 
@@ -1317,10 +1426,10 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoFatturaCliente/list', 
+                url: myStorage.ApiUrl + '/TipoFatturaCliente/list',
                 beforeSend: function (xhdr) {
                     xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
@@ -1453,12 +1562,12 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
                 url: myStorage.ApiUrl + '/TipoPagamento/list',
                 beforeSend: function (xhdr) {
-                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
             }).done(function (resp, statusText, xhdr) {
 
@@ -1525,7 +1634,7 @@
 
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoCondizionePagamento/list', 
+                url: myStorage.ApiUrl + '/TipoCondizionePagamento/list',
                 beforeSend: function (xhdr) {
                     xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
@@ -1592,7 +1701,7 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
                 url: myStorage.ApiUrl + '/TipoCoordinateBancarie/list',
@@ -1667,9 +1776,9 @@
 
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoUnitaDiMisura/list', 
+                url: myStorage.ApiUrl + '/TipoUnitaDiMisura/list',
                 beforeSend: function (xhdr) {
-                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
             }).done(function (resp, statusText, xhdr) {
 
@@ -1887,6 +1996,7 @@
     $('#btnFind').click(function () {
         var CurrentPageIndex = 0;
         popolaList(CurrentPageIndex);
+        setStatoOggetti(false, false, false, false, false);
     });
 
 
@@ -2007,7 +2117,6 @@
         popolaTblArchivioClienti(CurrentPageIndexOfArchivioClienti, strSearch)
     });
 
-
     $("#tblArchivioClienti").on('click', '.selezioneArchivioClienti', function () {
         var uid = $(this).data('uid');
         var td = $(this).parent();
@@ -2018,58 +2127,5 @@
         //CHIUDE LE MODALI
         $('#myModalArchivioClienti').modal('hide');
     });
-
-    function doDownloadXmlFn() {
-        //myObjFattura.uid
-      
-        //$.ajax({
-        //    url: "http://cors.jejaju.com/Snickerdoodles.pdf",
-        //    type: "GET",
-        //    dataType: 'binary',
-        //    success: function (result) {
-        //        var url = URL.createObjectURL(result);
-        //        var $a = $('<a />', {
-        //            'href': url,
-        //            'download': 'document.pdf',
-        //            'text': "click"
-        //        }).hide().appendTo("body")[0].click();
-        //        setTimeout(function () {
-        //            URL.revokeObjectURL(url);
-        //        }, 10000);
-        //    }
-        //});
-
-            AjaxMessageStart();
-
-            $.ajax({
-                dataType: 'binary',
-                method: 'GET',
-                url: myStorage.ApiUrl + '/FatturaCliente/getXmlFatturaElettronica/' + myObjFattura.uid,
-                beforeSend: function (xhdr) {
-                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
-                }
-            }).done(function (result) {
-
-                var url = URL.createObjectURL(result);
-                var $a = $('<a />', {
-                    'href': url,
-                    'download': 'document.pdf',
-                    'text': "click"
-                }).hide().appendTo("body")[0].click();
-                setTimeout(function () {
-                    URL.revokeObjectURL(url);
-                }, 10000);
-
-                AjaxMessageStop();
-
-            }).fail(function (xhdr, statusText, errorText) {
-
-                //alert("err=" + errorText);
-                openPopupMessage('error', "Ops... C'è stato un problema.<br />" + errorText);
-
-                });
-
-
-    }
 
 </script>

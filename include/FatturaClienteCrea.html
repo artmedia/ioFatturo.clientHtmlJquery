@@ -1666,7 +1666,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <p>Visualizza il documento</p>
-                                                <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
+                                                <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaAnteprimaHtmlFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1710,7 +1710,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <p>La Fattura Elettronica verrà inviata al SDI che la inoltrerà alla PEC del tuo cliente; potrai vedere le Notifiche nell'Archivio Fatture.</p>
-                                                <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invia documento al Cliente</button>
+                                                <button type="button" class="btn btn-success btn-lg btn-block" onclick="openModalInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invia documento al Cliente</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1767,7 +1767,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-6">
                                         <div class="d-none d-sm-block">
-                                            <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
+                                            <button type="button" class="btn btn-success btn-lg btn-block" onclick="doVisualizzaAnteprimaHtmlFn();"><i class="fas fa-eye"></i>&nbsp;Visualizza</button>
                                         </div>
                                     </div>
 
@@ -1849,7 +1849,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6 col-lg-6">
                                         <div class="d-none d-sm-block">
-                                            <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invia documento al Cliente</button>
+                                            <button type="button" class="btn btn-success btn-lg btn-block" onclick="openModalInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invia documento al Cliente</button>
                                         </div>
                                     </div>
 
@@ -2629,7 +2629,7 @@
                                 <div class="card-header">
                                     <h4>Cliente</h4>
                                 </div>
-                                <div class="card-body">                                    
+                                <div class="card-body">
                                     <div id="RiepilogoDocumento_Cliente"></div>
                                 </div>
                             </div>
@@ -2717,6 +2717,73 @@
 </div>
 
 
+<!-- Modal Invio a SDI -->
+<div class="modal fade" id="myModalInvioSDI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Invia il Documento al Cliente (attraverso SDI)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- ######## inizio ######## -->
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <h4>Invia il Documento al Cliente</h4>
+                            <div>
+                                <p>Il Documento verrà inviato al Sistema Di Interscambio che provvederà ad inoltrarlo al tuo cliente sulla sua casella PEC oppure attraverso il canale che questi ha indicato per la ricezione delle fatture elettroniche.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh20"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div id="boxMessageInvioSDI"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh10"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <button type="button" class="btn btn-success btn-lg btn-block" onclick="doInvioSDIFn();"><i class="far fa-share-square"></i>&nbsp;Invia documento a Cliente</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="spacerh20"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ######## fine  ######## -->
+            </div>
+
+            <div class="modal-footer">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/FatturaCliCommon.js"></script>
 <script type="text/javascript">
 
     var myObjFattura = new Entities.FatturaCli;
@@ -3493,7 +3560,7 @@
             method: 'GET',
             url: myStorage.ApiUrl + '/Soggetto/list/CurrentPageIndex/' + CurrentPageIndex + '/strSearch/' + strSearch,
             beforeSend: function (xhdr) {
-                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
             }
         }).done(function (resp, statusText, xhdr) {
 
@@ -3669,7 +3736,7 @@
             method: 'GET',
             url: myStorage.ApiUrl + '/CodiceUfficioPA/list/CurrentPageIndex/' + CurrentPageIndex + '/strSearch/' + strSearch,
             beforeSend: function (xhdr) {
-                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
             }
         }).done(function (resp, statusText, xhdr) {
 
@@ -4010,7 +4077,7 @@
             $('#ddlTestoLiberoUDM').removeClass('is-invalid');
         };
 
-        
+
         doRefreshInsertRigheFattura();
 
         var _myObjArticolo = new Entities.Articolo;
@@ -4219,7 +4286,7 @@
                 };
             });
 
-            
+
             //DEBUG
             //var a4 = Number(objRiga.importounitario).toLocaleString("it-IT", {minimumFractionDigits: 3});
 
@@ -4282,7 +4349,7 @@
 
             myObjFattura.righe = [];
             $('#tblRigheFattura > tbody  > tr').each(function (i, objTableRow) {
-                
+
                 var _uidtemporaneo = $(objTableRow).find("button").first().data("uidtemporaneo");
 
                 var myObjRigaFattura = new Entities.FatturaCliRiga;
@@ -4442,9 +4509,9 @@
 
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoUnitaDiMisura/list', 
+                url: myStorage.ApiUrl + '/TipoUnitaDiMisura/list',
                 beforeSend: function (xhdr) {
-                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
             }).done(function (resp, statusText, xhdr) {
 
@@ -4503,10 +4570,10 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoAliquotaIVA/list', 
+                url: myStorage.ApiUrl + '/TipoAliquotaIVA/list',
                 beforeSend: function (xhdr) {
                     xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
@@ -4583,12 +4650,12 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoPagamento/list', 
+                url: myStorage.ApiUrl + '/TipoPagamento/list',
                 beforeSend: function (xhdr) {
-                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                    xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
             }).done(function (resp, statusText, xhdr) {
 
@@ -4656,7 +4723,7 @@
 
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoCondizionePagamento/list', 
+                url: myStorage.ApiUrl + '/TipoCondizionePagamento/list',
                 beforeSend: function (xhdr) {
                     xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
@@ -4725,10 +4792,10 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
-                url: myStorage.ApiUrl + '/TipoCoordinateBancarie/list', 
+                url: myStorage.ApiUrl + '/TipoCoordinateBancarie/list',
                 beforeSend: function (xhdr) {
                     xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
                 }
@@ -4786,11 +4853,11 @@
             });
         };
     };
-    
+
     function popolaEsigibilitaIVA() {
 
         AjaxMessageStart();
-        
+
         $.ajax({
             method: 'GET',
             url: myStorage.ApiUrl + '/TipoEsigibilitaIVA/list',
@@ -4861,7 +4928,7 @@
         } else {
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
                 url: myStorage.ApiUrl + '/Azienda/get',
@@ -5022,7 +5089,7 @@
             };
 
             AjaxMessageStart();
-            
+
             $.ajax({
                 method: 'GET',
                 url: myStorage.ApiUrl + '/FatturaCliente/get/' + uidDocumento,
@@ -5336,7 +5403,7 @@
             $('#collapsableVisualizzaRiferimentoAmministrazione').collapse('hide');
         };
 
-        $("#txtImportoBolloFE").val(Number(parseFloat(myDocumento.opzionalepa_importobollo)).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 3 }) );
+        $("#txtImportoBolloFE").val(Number(parseFloat(myDocumento.opzionalepa_importobollo)).toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 3 }));
         $('#chkIncludiBolloInTotaleFE').prop('checked', (myDocumento.opzionalepa_importobollo_addebitoalcliente));
         if (myDocumento.opzionalepa_importobollo != 0) {
             $('#chkVisualizzaCampiBolloFE').prop('checked', true);
@@ -5474,7 +5541,7 @@
             method: 'GET',
             url: myStorage.ApiUrl + '/DDT/list/CurrentPageIndex/' + CurrentPageIndex + '/DataDocumentoInizio/' + _datainizio + '/DataDocumentoFine/' + _datafine + '/UidSoggetto/' + UidSoggetto + '/showOnlyDDTDaFatturare/true',
             beforeSend: function (xhdr) {
-                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token); 
+                xhdr.setRequestHeader("Authorization", "Bearer " + myStorage.token);
             }
         }).done(function (resp, statusText, xhdr) {
 
@@ -6703,7 +6770,7 @@
             var errormessage = myResponse.errormessage; // = "OK";
             var errorcode = myResponse.errorcode; // = 0;
             var pagecount = myResponse.pagecount;
-            
+
             if (success == true) {
 
                 myObjFattura = $.parseJSON(myResponse.obj);
